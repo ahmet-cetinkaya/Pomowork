@@ -356,8 +356,6 @@ function showAlertinNotes(type, message) { // Bilgilendirme Mesajları
     }, 2000);
 }
 
-
-
 function addTodoToUI(InputTodo) { // String değerini list item olarak UI'ya ekleyecek.
     // List Item oluşturma
     const listItem = document.createElement("li");
