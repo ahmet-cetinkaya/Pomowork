@@ -128,15 +128,12 @@ function addBookmark(e) {
 
 function addBookmarkToUI(newurlname, newurl) {
     const buttondiv = document.createElement("div");
-    const bookmarkItem = document.createElement("button");
+    const bookmarkItem = document.createElement("a");
     const link = document.createElement("button");
     link.className = "btn btn-dark delete-item fa fa-remove";
     link.innerHTML = "<i></i>";
-    bookmarkItem.type = "button";
     bookmarkItem.className = "btn btn-dark";
-    bookmarkItem.onclick = function (e) {
-        window.location.href = newurl;
-    }
+    bookmarkItem.href = newurl;
     bookmarkItem.appendChild(document.createTextNode(newurlname));
     bookmarkItem.appendChild(link);
     buttondiv.className = "btn-group butonmargin";
