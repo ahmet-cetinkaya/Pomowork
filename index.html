@@ -103,14 +103,28 @@
             <div class="card-body" style="padding-top:0;padding-left:0.7rem;">
                 <h5 class="card-title" id="tasks-title">Görevler</h5>
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-7">
                         <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
                             placeholder="Bir Görev Arayın">
                     </div>
                 </div>
-                <ul id="todos" class="list-group">
-                </ul>
-                <hr>
+                <div class="row">
+                    <div class="col-sm-7">
+                        <ul id="todos" class="list-group">
+                        </ul>
+                    </div>
+                    <div id="pomodoro" class="mx-auto text-center">
+                        <audio id="pomodorosound" src="/pomodoroalert.mp3" preload="auto"></audio>
+                        <h1>25</h1>
+                        <p>00</p>
+                        <div class="justify-content-center">
+                            <button id="startpomodoro" class="btn btn-success">Başla</button>
+                            <button id="breakpomodoro" class="btn btn-warning">Mola</button>
+                            <button id="stoppomodoro" class="btn btn-danger">Durdur</button>
+                        </div>
+                    </div>
+
+                </div>
                 <a id="clear-todos" class="btn btn-dark" href="#">Tüm Görevleri Tamamla</a>
             </div>
 
@@ -131,7 +145,7 @@
 
         </div>
         <p class="text-center text-muted">Made by <a href="mailto:amtctnky@outlook.com"
-                class="text-reset text-decoration-none">amt</a></p>
+                class="text-reset text-decoration-none">Ahmet Çetinkaya</a></p>
         <style>
             body {
                 background-image: url("bg.jpg");
@@ -149,6 +163,21 @@
             .butonmargin {
                 margin-right: 3px;
                 margin-bottom: 1px;
+            }
+
+            #todos li:nth-child(even) {
+                background: rgb(241, 241, 241);
+            }
+
+            #pomodoro {
+                position: static;
+                padding-top: 4%;
+                background: rgba(61, 61, 61, .1);
+                width: 220px;
+                height: 220px;
+                border: 1px grey solid;
+                border-radius: 50%;
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
             }
         </style>
 

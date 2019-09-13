@@ -12,7 +12,17 @@ const urlInput = document.querySelector("#urlInput");
 const bookmarkList = document.querySelector("#bookmarksList");
 const noteForm = document.querySelector("#noteForm");
 const noteList = document.querySelector("#noteList");
-
+const pomodoro = {
+    section: document.querySelector("#pomodoro"),
+    startbutton: document.querySelector("#startpomodoro"),
+    breakbutton: document.querySelector("#breakpomodoro"),
+    stopbutton: document.querySelector("#stoppomodoro"),
+    sandglass: document.querySelector("#pomodorosandglass"),
+    minutes: document.querySelector("#pomodoro h1"),
+    second: document.querySelector("#pomodoro p"),
+    sound: document.querySelector("#pomodorosound")
+}
+const style = document.querySelector("style");
 eventListeners();
 
 function eventListeners() { // Tüm event listenerlar
@@ -21,21 +31,74 @@ function eventListeners() { // Tüm event listenerlar
         loadAllBookmarksToUI();
         loadAllTodosToUI();
         loadAllNotesToUI();
-    });
+    })
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("google-search-input").focus();
     })
-    secondCardBody.addEventListener("click", deletetodo);
-    filter.addEventListener("keyup", filterTodos);
-    clearButton.addEventListener("click", clearAllTodos);
-    googlesearchform.addEventListener("submit", googlesearch);
-    bookmarkaddform.addEventListener("submit", addBookmark);
-    bookmarkList.addEventListener("click", deletebookmark);
-    noteForm.addEventListener("submit", addNote);
+    secondCardBody.addEventListener("click", deletetodo)
+    filter.addEventListener("keyup", filterTodos)
+    clearButton.addEventListener("click", clearAllTodos)
+    googlesearchform.addEventListener("submit", googlesearch)
+    bookmarkaddform.addEventListener("submit", addBookmark)
+    bookmarkList.addEventListener("click", deletebookmark)
+    noteForm.addEventListener("submit", addNote)
     noteList.addEventListener("keyup", function (e) {
         addNoteToStorage(e);
         deletenote(e);
-    });
+    })
+    pomodoro.startbutton.addEventListener("click", function () {
+        pomodoroTime("start");
+    })
+    pomodoro.breakbutton.addEventListener("click", function () {
+        pomodoroTime("break");
+    })
+    pomodoro.stopbutton.addEventListener("click", function () {
+        pomodoroTime("stop");
+    })
+}
+
+let countdowntime;
+let interval;
+
+function pomodoroTime(process) {
+    let second60 = 60;
+    if (process != "stop") {
+        if (process === "start") {
+            clearInterval(interval);
+            countdowntime = 25 * 60
+        } else if (process === "break") {
+            clearInterval(interval);
+            countdowntime = 5 * 60;
+        }
+        countdowntimepercent = countdowntime;
+        interval = setInterval(function () {
+            countdowntime--;
+            second60--;
+            pomodoro.minutes.innerText = Math.floor(countdowntime / 60);
+            pomodoro.second.innerText = second60;
+            pomodoro.section.style.background = `linear-gradient(0deg, rgba(61, 61, 61, 0.1) ${(countdowntime/countdowntimepercent)*100}%, rgba(90, 190, 90, 1) ${((countdowntime/countdowntimepercent)*100)+5}%)`;
+            if (!second60) {
+                second60 = 60;
+            }
+            if (!countdowntime) {
+                clearInterval(interval);
+                pomodoro.sound.play();
+                if (process === "start") {
+                    setTimeout(
+                        alert("⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."), 1000);
+                    return pomodoroTime("break");
+
+                } else if (process === "break") {
+                    setTimeout(
+                        alert("🧍 Molanın sonuna geldik. ⏲️ İşin başına !"), 1000);
+                    return pomodoroTime("start");
+                }
+            }
+            // console.log("test: interval -> countdowntime", countdowntime)
+        }, 1000)
+    } else {
+        clearInterval(interval);
+    }
 }
 
 
