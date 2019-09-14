@@ -102,22 +102,19 @@
             </div>
             <div class="card-body" style="padding-top:0;padding-left:0.7rem;">
                 <div class="container">
+
+
                     <div class="row">
-                        <div class="col-2 my-auto">
-                            <h5 class="card-title" id="tasks-title">Görevler</h5>
-                        </div>
                         <div class="col-8">
-                            <div class="form-row">
-                                <div class="form-group col-7">
+                            <div class="row">
+                                <div class="col-2 my-auto">
+                                    <h5 class="card-title" id="tasks-title">Görevler</h5>
+                                </div>
+                                <div class="col-9">
                                     <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
                                         placeholder="Bir Görev Arayın">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-8">
                             <ul id="todos" class="list-group">
                             </ul>
                         </div>
@@ -179,6 +176,7 @@
             }
 
             #todos {
+                display: flex;
                 overflow-x: hidden;
                 overflow-y: auto;
                 height: 300px;
