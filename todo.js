@@ -20,7 +20,9 @@ const pomodoro = {
     sandglass: document.querySelector("#pomodorosandglass"),
     minutes: document.querySelector("#pomodoro h1"),
     second: document.querySelector("#pomodoro p"),
-    sound: document.querySelector("#pomodorosound")
+    sound: document.querySelector("#pomodorosound"),
+    allpomodoro: document.querySelector("#allpomodoro"),
+    longbreak: document.querySelector("#longbreak")
 }
 const style = document.querySelector("style");
 eventListeners();
@@ -59,6 +61,8 @@ function eventListeners() { // Tüm event listenerlar
 
 let countdowntime;
 let interval;
+let allpomodorotimes = 0;
+let pomodorotimes = 0;
 
 function pomodoroTime(process) {
     let second60 = 60;
@@ -69,6 +73,9 @@ function pomodoroTime(process) {
         } else if (process === "break") {
             clearInterval(interval);
             countdowntime = 5 * 60;
+        } else if (process === "longbreak") {
+            clearInterval(interval);
+            countdowntime = 30 * 60;
         }
         countdowntimepercent = countdowntime;
         interval = setInterval(function () {
@@ -76,7 +83,7 @@ function pomodoroTime(process) {
             second60--;
             pomodoro.minutes.innerText = Math.floor(countdowntime / 60);
             pomodoro.second.innerText = second60;
-            pomodoro.section.style.background = `linear-gradient(0deg, rgba(61, 61, 61, 0.1) ${(countdowntime/countdowntimepercent)*100}%, rgba(90, 190, 90, 1) ${((countdowntime/countdowntimepercent)*100)+5}%)`;
+            pomodoro.section.style.background = `linear-gradient(0deg, rgba(61, 61, 61, 0.1) ${(countdowntime / countdowntimepercent) * 100}%, rgba(90, 190, 90, 1) ${((countdowntime / countdowntimepercent) * 100) + 5}%)`;
             if (!second60) {
                 second60 = 60;
             }
@@ -84,17 +91,31 @@ function pomodoroTime(process) {
                 clearInterval(interval);
                 pomodoro.sound.play();
                 if (process === "start") {
-                    setTimeout(
-                        alert("⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."), 1000);
-                    return pomodoroTime("break");
-
+                    allpomodorotimes++;
+                    pomodorotimes++;
+                    pomodoro.allpomodoro.innerText = allpomodorotimes;
+                    pomodoro.longbreak.innerText = pomodorotimes;
+                    if (pomodorotimes !== 4) {
+                        setTimeout(
+                            alert("⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."), 1500);
+                        return pomodoroTime("break");
+                    } else {
+                        setTimeout(
+                            alert("🌟 4 Pomodoro Bitti ! 🤸 Uzun bir molayı hakkettin."), 1500);
+                        return pomodoroTime("longbreak");
+                    }
                 } else if (process === "break") {
                     setTimeout(
-                        alert("🧍 Molanın sonuna geldik. ⏲️ İşin başına !"), 1000);
+                        alert("🧍 Molanın sonuna geldik. ⏲️ İşin başına !"), 1500);
+                    return pomodoroTime("start");
+                } else if (process === "longbreak") {
+                    pomodorotimes = 0;
+                    pomodoro.longbreak.innerText = pomodorotimes;
+                    setTimeout(
+                        alert("🧍 Uzun olan molanın sonuna geldik. ⏲️ İşin başına !"), 1500);
                     return pomodoroTime("start");
                 }
             }
-            // console.log("test: interval -> countdowntime", countdowntime)
         }, 1000)
     } else {
         clearInterval(interval);
