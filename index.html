@@ -101,34 +101,42 @@
                 </div>
             </div>
             <div class="card-body" style="padding-top:0;padding-left:0.7rem;">
-                <h5 class="card-title" id="tasks-title">Görevler</h5>
-                <div class="form-row">
-                    <div class="form-group col-7">
-                        <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
-                            placeholder="Bir Görev Arayın">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-7">
-                        <ul id="todos" class="list-group">
-                        </ul>
-                    </div>
-
-                    <div id="pomodoro" class="mx-auto text-center">
-                        <audio id="pomodorosound" src="/pomodoroalert.mp3" preload="auto"></audio>
-                        <h1>25</h1>
-                        <p>00</p>
-                        <div class="justify-content-center">
-                            <button id="startpomodoro" class="btn btn-success">Başla</button>
-                            <button id="breakpomodoro" class="btn btn-warning">Mola</button>
-                            <button id="stoppomodoro" class="btn btn-danger">Durdur</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2 my-auto">
+                            <h5 class="card-title" id="tasks-title">Görevler</h5>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-row">
+                                <div class="form-group col-7">
+                                    <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
+                                        placeholder="Bir Görev Arayın">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-8">
+                            <ul id="todos" class="list-group">
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <div id="pomodoro" class="mx-auto text-center">
+                                <audio id="pomodorosound" src="/pomodoroalert.mp3" preload="auto"></audio>
+                                <h1>25</h1>
+                                <p>00</p>
+                                <div class="justify-content-center">
+                                    <button id="startpomodoro" class="btn btn-success">Başla</button>
+                                    <button id="breakpomodoro" class="btn btn-warning">Mola</button>
+                                    <button id="stoppomodoro" class="btn btn-danger">Durdur</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a id="clear-todos" class="btn btn-dark my-2" href="#">Tüm Görevleri Tamamla</a>
                 </div>
-                <a id="clear-todos" class="btn btn-dark" href="#">Tüm Görevleri Tamamla</a>
             </div>
-
             <div class="card-header" style="border-top:1px solid rgba(0,0,0,.125); background-color: #fad390;">Not
                 Listesi</div>
             <div class="card-body" style="padding-left:0.7rem;">
@@ -166,8 +174,22 @@
                 margin-bottom: 1px;
             }
 
+            #todossection {
+                margin-bottom: -100px
+            }
+
+            #todos {
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: 300px;
+            }
+
+            #todos li {
+                border: none;
+            }
+
             #todos li:nth-child(even) {
-                background: rgb(241, 241, 241);
+                background: rgb(220, 220, 220);
             }
 
             #pomodoro {
