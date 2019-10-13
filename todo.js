@@ -58,7 +58,7 @@ function eventListeners() { // Tüm event listenerlar
         pomodoroTime("stop");
     })
 }
-
+/// Pomodoro Timer
 let countdowntime;
 let interval;
 let allpomodorotimes = 0;
@@ -122,6 +122,7 @@ function pomodoroTime(process) {
     }
 }
 
+/// Notes
 
 function addNote(e) {
     addNoteToUI();
