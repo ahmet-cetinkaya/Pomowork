@@ -24,7 +24,6 @@ const pomodoro = {
     allpomodoro: document.querySelector("#allpomodoro"),
     longbreak: document.querySelector("#longbreak")
 }
-const style = document.querySelector("style");
 eventListeners();
 
 function eventListeners() { // Tüm event listenerlar
@@ -304,6 +303,7 @@ function deletetodo(e) { // Todo arayüzden silmek
     if (e.target.className === "far fa-circle") {
         e.target.parentElement.parentElement.remove();
         deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
+        pomodoro.sound.play();
         showAlert("success", "Görev Tamamlandı.");
     }
 }
