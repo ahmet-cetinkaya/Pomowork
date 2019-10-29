@@ -531,10 +531,10 @@ function defaultSettings(process) {
     }
     if (localStorage.getItem("settings") === null) {
         localStorage.setItem("settings", JSON.stringify(settings));
-        localStorage.setItem("wallpaper", "/images/bg.jpg");
+        localStorage.setItem("wallpaper", "images/bg.jpg");
     } else if (process == "save") {
         localStorage.setItem("settings", JSON.stringify(settings));
-        localStorage.setItem("wallpaper", "/images/bg.jpg");
+        localStorage.setItem("wallpaper", "images/bg.jpg");
         setWallpaper(localStorage.getItem("wallpaper"));
     }
 }
