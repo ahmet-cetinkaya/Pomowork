@@ -209,7 +209,7 @@ textarea {
 }
 
 #pomodoro-section .wave {
-    background: url("/images/wave.png");
+    background: url("images/wave.png");
     height: 20px;
     background-size: contain;
     -webkit-animation: wave 15s ease-in-out infinite;
