@@ -160,6 +160,7 @@
         <!-- bookmark edit form modal -->
         <!-- settings form modal -->
         <a id="settings-button" data-toggle="modal" data-target="#settings-modal"><i class="fas fa-cog"></i></a>
+        <div id="alertSettings" style="cursor: progress;"></div>
         <form id="settings-form" name="edit">
             <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -235,6 +236,9 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-row">
+                                        <label for="upload-wallpaper" class="custom-file-select btn btn-dark">
+                                            <i class="fas fa-file-upload"></i> <span>Dosya Seç</span>
+                                        </label>
                                         <input type='file' id='upload-wallpaper' name="background-image" />
                                         <input id="custom-wallpaper" autocomplete="off" type="text" class="form-control"
                                             placeholder="URL">
@@ -243,6 +247,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <select id="language" class="form-control col-2 float-left">
+                                <option value="tr">TR</option>
+                                <option value="en">EN</option>
+                            </select>
                             <button id="default-settings" type="button" class="btn btn-secondary" data-toggle="modal"
                                 data-target="#settings-modal">Varsayılan</button>
                             <button type="submit" class="btn btn-success" data-toggle="modal"
@@ -261,11 +269,10 @@
     <audio id="pomodorosound" src="sounds/pomodoroalert.mp3" preload="auto"></audio>
     <audio id="warningsound" src="sounds/warning.mp3" preload="auto"></audio>
     <audio id="dangersound" src="sounds/danger.mp3" preload="auto"></audio>
-
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/todo.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -47,7 +47,188 @@ const setting = {
     category: document.querySelector("#daily-wallpaper-category"),
     custom: document.querySelector("#custom-wallpaper"),
     upload: document.querySelector("#upload-wallpaper"),
-    default: document.querySelector("#default-settings")
+    uploadLabel: document.querySelector("#settings-modal .custom-file-select span"),
+    default: document.querySelector("#default-settings"),
+    language: document.querySelector("#language")
+}
+const lang = {
+    strt: {
+        en: "Start",
+        tr: "Başla",
+    },
+    brk: {
+        en: "Break",
+        tr: "Mola",
+    },
+    stp: {
+        en: "Stop",
+        tr: "Durdur",
+    },
+    alrt: {
+        fnshpmdr: {
+            en: "⏲️ Pomodoro Done! 🤸 Time is a break time.",
+            tr: "⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."
+        },
+        fnsh4pmdr: {
+            en: "🌟 4 Pomodoro Done! 🤸 You deserve a long break.",
+            tr: "🌟 4 Pomodoro Bitti ! 🤸 Uzun bir molayı hakk ettin."
+        },
+        fnshbrk: {
+            en: "🧍 We're at the end of the break. ⏲️ Back to work!",
+            tr: "🧍 Molanın sonuna geldik. ⏲️ İşin başına!"
+        },
+        fnshlgbrk: {
+            en: "🧍 We're at the end of the long break. ⏲️ Back to work!",
+            tr: "🧍 Uzun olan molanın sonuna geldik. ⏲️ İşin başına !"
+        },
+        fnshpmdr: {
+            en: "",
+            tr: "⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."
+        },
+        fnshpmdr: {
+            en: "",
+            tr: "⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."
+        },
+        fnshpmdr: {
+            en: "",
+            tr: "⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."
+        },
+        fnshpmdr: {
+            en: "",
+            tr: "⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."
+        },
+    },
+    ttlpmr: {
+        en: "Total Pomodoro:",
+        tr: "Toplam Pomodoro:",
+    },
+    tds: {
+        en: "To-Do",
+        tr: "Görevler",
+    },
+    entrtds: {
+        en: "Enter A To-do",
+        tr: "Bir Görev Girin",
+    },
+    addtds: {
+        en: "Add To-do",
+        tr: "Görev Ekleyin",
+    },
+    srchtds: {
+        en: "Search A To-do",
+        tr: "Bir Görev Arayın",
+    },
+    cmplttds: {
+        en: "Complete All To-do",
+        tr: "Tüm Görevleri Tamamla",
+    },
+    srch: {
+        en: "Search",
+        tr: "Arama Yapın",
+    },
+    addnt: {
+        en: "Add Note",
+        tr: "Not Ekleyin",
+    },
+    addbkmrk: {
+        en: "Add Bookmark",
+        tr: "Yer İmi Ekle",
+    },
+    ttlebkmrk: {
+        en: "Title",
+        tr: "Başlık",
+    },
+    addbkmrk: {
+        en: "Add",
+        tr: "Ekle",
+    },
+    edtbkmrk: {
+        en: "Edit Bookmark",
+        tr: "Yer İmini Düzenle",
+    },
+    dlt: {
+        en: "Delete",
+        tr: "Sil",
+    },
+    edt: {
+        en: "Edit",
+        tr: "Düzenle",
+    },
+    sttngs: {
+        en: "Settings",
+        tr: "Ayarlar",
+    },
+    pmdrtm: {
+        en: "Work Time",
+        tr: "Çalışma Süresi",
+    },
+    pmdrbrk: {
+        en: "Break Time",
+        tr: "Mola Süresi",
+    },
+    pmdrlngbrk: {
+        en: "Long Break Time",
+        tr: "Uzun Mola Süresi",
+    },
+    wllppr: {
+        en: "Wallpaper",
+        tr: "Duvar Kağıdı",
+    },
+    dlywllppr: {
+        en: "Daily Wallpaper",
+        tr: "Günlük Duvar Kağıdı",
+    },
+    dlywllpprct: {
+        en: "Daily Wallpaper Category",
+        tr: "Günlük Duvar Kağıdı Kategorisi",
+    },
+    ctgry: {
+        0: {
+            en: "Nature",
+            tr: "Doğal"
+        },
+        1: {
+            en: "Texture",
+            tr: "Kaplamalar"
+        },
+        2: {
+            en: "Architecture",
+            tr: "Mimari"
+        },
+        3: {
+            en: "Travel",
+            tr: "Yolculuk"
+        },
+        4: {
+            en: "Animals",
+            tr: "Hayvanlar"
+        },
+        5: {
+            en: "Art",
+            tr: "Sanat"
+        },
+        6: {
+            en: "Business",
+            tr: "İş"
+        },
+    },
+    cstmwllppr: {
+        en: "Custom Wallpaper",
+        tr: "Özel Duvar Kağıdı",
+    },
+    cstmwllpprbtn: {
+        en: "Select File",
+        tr: "Dosya Seç",
+    },
+    dflt: {
+        en: "Default",
+        tr: "Varsayılan",
+    },
+    sv: {
+        en: "Save",
+        tr: "Kaydet",
+    }
+
 }
 
 eventListeners();
@@ -92,8 +273,9 @@ function eventListeners() {
     });
     setting.button.addEventListener("click", editSettings);
     setting.form.addEventListener("submit", saveSettings);
-    setting.default.addEventListener("click", () => defaultSettings("save"))
-}
+    setting.default.addEventListener("click", () => defaultSettings("save"));
+    setting.upload.addEventListener("change", () => setting.uploadLabel.textContent = setting.upload.files[0].name);
+};
 
 /// XMLHttpRequest
 class Request {
@@ -109,7 +291,7 @@ class Request {
         };
         this.xhr.send();
     };
-}
+};
 
 /// Pomodoro Timer
 let countdowntime;
@@ -151,7 +333,7 @@ function pomodoroTime(process) {
                     pomodoro.longbreak.innerText = pomodorotimes;
                     if (pomodorotimes !== 4) {
                         setTimeout(
-                            alert("⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."), 1500);
+                            alert(lang.alrt.fnshpmdr), 1500);
                         return pomodoroTime("break");
                     } else {
                         setTimeout(
@@ -520,6 +702,25 @@ function getTimeNow() {
     return `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`
 }
 
+function getTranslation(word) {
+    const language = getSettings().language;
+    Object.entries(lang).forEach(key => {
+        if (key == word) {
+            Object.keys(key).forEach(key => {
+                if (key == language) {
+                    console.log(key)
+                }
+            });
+
+        }
+    });
+
+
+    // for (let [key, value] of Object.entries(object1)) {
+    //   console.log(`${key}: ${value}`);
+    // }
+}
+
 function defaultSettings(process) {
     const settings = {
         start: 25,
@@ -528,6 +729,7 @@ function defaultSettings(process) {
         daily: true,
         day: getTimeNow(),
         category: "nature",
+        language: "tr"
     }
     if (localStorage.getItem("settings") === null) {
         localStorage.setItem("settings", JSON.stringify(settings));
@@ -551,7 +753,13 @@ function editSettings() {
         }
     });
     setting.upload.value = ""
+    setting.uploadLabel.textContent = "Dosya Seç"
     setting.custom.value = ""
+    Object.keys(setting.language.options).forEach(e => {
+        if (settings.language == setting.language.options[e].value) {
+            setting.language.selectedIndex = e;
+        }
+    });
 }
 
 function saveSettings(e) {
@@ -575,7 +783,11 @@ function saveSettings(e) {
     if (!!setting.custom.value) {
         setWallpaper(setting.custom.value);
     }
+    if (settings.language != setting.language.value) {
+        settings.language = setting.language.value;
+    }
     localStorage.setItem("settings", JSON.stringify(settings));
+    showAlert("alertSettings", "left", "success", "Ayarlar kaydedildi.");
     dailyWallpaper("save");
 }
 
@@ -611,7 +823,9 @@ function showAlert(alertid, position, type, message) {
     alert.className = `float-${position} btn btn-${type} fade show`;
     alert.textContent = message;
     setTimeout(function () {
-        alert.className = `fade`;
-        alert.textContent = ""
+        alert.className = `float-${position} btn btn-${type} fade`;
     }, 2000);
+    setTimeout(function () {
+        alert.textContent = ""
+    }, 2150);
 }
