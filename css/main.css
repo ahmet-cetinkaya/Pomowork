@@ -186,6 +186,30 @@ textarea {
         0 10px 10px rgba(0, 0, 0, 0.17);
 }
 
+#language {
+    position: absolute;
+    left: 10px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-select {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.custom-file-select i {
+    margin-right: 10px;
+}
+
 /* pomodoro */
 #pomodoro-section {
     position: relative;
@@ -209,7 +233,7 @@ textarea {
 }
 
 #pomodoro-section .wave {
-    background: url("images/wave.png");
+    background: url("/images/wave.png");
     height: 20px;
     background-size: contain;
     -webkit-animation: wave 15s ease-in-out infinite;
@@ -371,6 +395,13 @@ textarea {
     -webkit-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
+}
+
+#alertSettings {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    cursor: pointer;
 }
 
 /* noteList */
