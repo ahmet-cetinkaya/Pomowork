@@ -714,11 +714,10 @@ function getTranslation(word) {
 
         }
     });
-
-
     // for (let [key, value] of Object.entries(object1)) {
     //   console.log(`${key}: ${value}`);
     // }
+    //! under development
 }
 
 function defaultSettings(process) {
