@@ -333,7 +333,7 @@ function pomodoroTime(process) {
                     pomodoro.longbreak.innerText = pomodorotimes;
                     if (pomodorotimes !== 4) {
                         setTimeout(
-                            alert(lang.alrt.fnshpmdr), 1500);
+                            alert("⏲️ Pomodoro Bitti ! 🤸 Vakit mola vaktidir."), 1500);
                         return pomodoroTime("break");
                     } else {
                         setTimeout(
