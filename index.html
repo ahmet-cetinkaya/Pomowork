@@ -9,91 +9,34 @@
     <link rel="stylesheet" href="css/solid.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <title>Pomowork</title>
+    <title>amt homepage</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
-
-
-
                 <div id="pomodoro-section" class="mx-auto my-5 text-center">
                     <div class="water">
                         <span class="wave"></span>
                         <span class="deep-water"></span>
                     </div>
-                    <img id="emj" src=""></img>
-                    <div id="minute">
-                        <p>
-                        </p>
-                    </div>
+                    <h1>25</h1>
+                    <p>00</p>
                     <div class="justify-content-center">
-                        <button id="startpomodoro" class="btn btn-success" lang="strt"></button>
-                        <button id="breakpomodoro" class="btn btn-warning" lang="brk"></button>
-                        <button id="historybtn" class="btn btn-info" data-toggle="modal"
-                            data-target="#pomodorohistory"><i class="fas fa-history"></i></button>
+                        <button id="startpomodoro" class="btn btn-success">Başla</button>
+                        <button id="breakpomodoro" class="btn btn-warning">Mola</button>
+                        <button id="stoppomodoro" class="btn btn-danger">Durdur</button>
                     </div>
-                    <p style="font-size: 14px; display: inline;" lang="ttlpmr"> </p>
-                    <p style="font-size: 14px; display: inline;"><span id="allpomodoro">0</span>
-                        (<span id="longbreak">0</span>/4)</p>
-
-
-                    <div id="history" class="no-animation">
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="monday" class="name">Pzt</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="tuesday" class="name">Sal</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="wednesday" class="name">Çar</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="thursday" class="name">Per</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="friday" class="name">Cum</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="saturday" class="name">Cmt</div>
-                        </div>
-                        <div class="skill">
-                            <div class="graph" data-container="body" data-toggle="popover" data-placement="top"
-                                data-content="Ort. pomodoro:" data-trigger="hover">
-                            </div>
-                            <div id="sunday" class="name">Paz</div>
-                        </div>
-                    </div>
+                    <p style="font-size: 14px;">Toplam Pomodoro: <span id="allpomodoro">0</span> (<span
+                            id="longbreak">0</span>/4)
+                    </p>
                 </div>
-
-
                 <div id="todos-section" class="mx-auto">
                     <div class="row my-2">
                         <div class="col-3 my-2">
-                            <h4 lang="tds">Görevler</h4>
+                            <h4>Görevler</h4>
                         </div>
                         <div class="col-9">
                             <div id="alertInTodo" style="cursor: progress;"></div>
@@ -103,10 +46,10 @@
                         <div class="form-row align-items-center">
                             <div class="col-9">
                                 <input class="form-control" autocomplete="off" type="text" name="todo" id="todo"
-                                    placeholder="Bir Görev Girin" lang="entrtds">
+                                    placeholder="Bir Görev Girin">
                             </div>
                             <div class="col-3">
-                                <button type="submit" class="btn btn-info" lang="addtds">Görev Ekleyin</button>
+                                <button type="submit" class="btn btn-info">Görev Ekleyin</button>
                             </div>
                         </div>
                     </form>
@@ -115,33 +58,33 @@
                         </ul>
                     </div>
                     <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
-                        placeholder="Bir Görev Arayın" lang="srchtds">
-                    <button id="clear-todos" class="btn btn-dark my-2" lang="cmplttds">Tüm Görevleri Tamamla</button>
+                        placeholder="Bir Görev Arayın">
+                    <button id="clear-todos" class="btn btn-dark my-2">Tüm Görevleri Tamamla</button>
                 </div>
             </div>
             <div id="main-section" class="col-lg-6">
                 <form id="google-search-form" class="col-8 center" name="search">
                     <img style="float: left;" src="images/googlelogo_color_92x30dp.png">
                     <input id="google-search-input" autocomplete="off" class="form-control col-12" type="text"
-                        placeholder="Arama yap" lang="srch">
+                        placeholder="Arama yap">
                 </form>
                 <div id="bookmarksList" class="center mt-3">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookmarkmodal"><i
                             class="fas fa-plus"></i>
                     </button>
                 </div>
-                <div id="alertInBookmark"></div>
+                <div id="alertInBookmark" style="cursor: progress;"></div>
             </div>
             <div class="col-lg-3 my-5">
                 <div class="row">
                     <div class="col-6">
-                        <button id="noteForm" type="submit" class="btn btn-warning" lang="addnt">Not Ekleyin</button>
+                        <button id="noteForm" type="submit" class="btn btn-warning">Not Ekleyin</button>
                     </div>
                     <div class="col-6">
-                        <div id="alertInNotes"></div>
+                        <div id="alertInNotes" style="cursor: progress;"></div>
                     </div>
                 </div>
-                <form id="noteList" class="row"></form>
+                <form id="noteList" class="row" style="padding:0.7rem;"></form>
             </div>
         </div>
     </div>
@@ -153,7 +96,8 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" lang="addbkmrktttl">Yer imi ekle</h4>
+                            <h5 class="modal-title">Yer imi ekle
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -162,7 +106,7 @@
                             <div class="form-row">
                                 <div class="col">
                                     <input id="urlnameInput" autocomplete="off" type="text" class="form-control"
-                                        placeholder="Başlık" lang="ttlebkmrk">
+                                        placeholder="Başlık">
                                 </div>
                                 <div class="col">
                                     <input id="urlInput" autocomplete="off" type="text" class="form-control"
@@ -172,7 +116,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success" data-toggle="modal"
-                                data-target="#bookmarkmodal" lang="addbkmrk">Ekle</button>
+                                data-target="#bookmarkmodal">Ekle</button>
                         </div>
                     </div>
                 </div>
@@ -185,7 +129,8 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" lang="edtbkmrk">Yer imini düzenle</h4>
+                            <h5 class="modal-title">Yer imini düzenle
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -194,7 +139,7 @@
                             <div class="form-row">
                                 <div class="col">
                                     <input id="editurlnameInput" autocomplete="off" type="text" class="form-control"
-                                        placeholder="Başlık" lang="ttlebkmrk">
+                                        placeholder="Başlık">
                                 </div>
                                 <div class="col">
                                     <input id="editurleditInput" autocomplete="off" type="text" class="form-control"
@@ -203,10 +148,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="deletebookmark" type="button" class="btn btn-danger" data-dismiss="modal"
-                                lang="dlt">Sil</button>
+                            <button id="deletebookmark" type="button" class="btn btn-danger"
+                                data-dismiss="modal">Sil</button>
                             <button type="submit" class="btn btn-success" data-toggle="modal"
-                                data-target="#bookmarkmodaledit" lang="edt">Düzenle</button>
+                                data-target="#bookmarkmodaledit">Düzenle</button>
                         </div>
                     </div>
                 </div>
@@ -215,22 +160,22 @@
         <!-- bookmark edit form modal -->
         <!-- settings form modal -->
         <a id="settings-button" data-toggle="modal" data-target="#settings-modal"><i class="fas fa-cog"></i></a>
-        <div id="alertSettings"></div>
+        <div id="alertSettings" style="cursor: progress;"></div>
         <form id="settings-form" name="edit">
             <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" lang="sttngs">Ayarlar</h4>
+                            <h5 class="modal-title">Ayarlar</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h4>Pomodoro</h4>
+                            <h5>Pomodoro</h5>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="pmdrtm">Çalışma Süresi</p>
+                                    <p>Çalışma Süresi</p>
                                 </div>
                                 <div class="col-2">
                                     <input id="pomodoro-start-setting" autocomplete="off" type="number"
@@ -240,7 +185,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="pmdrbrk">Mola Süresi</p>
+                                    <p>Mola Süresi</p>
                                 </div>
                                 <div class="col-2">
                                     <input id="pomodoro-break-setting" autocomplete="off" type="number"
@@ -250,7 +195,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="pmdrlngbrk">Uzun Mola Süresi</p>
+                                    <p>Uzun Mola Süresi</p>
                                 </div>
                                 <div class="col-2">
                                     <input id="pomodoro-longbreak-setting" autocomplete="off" type="number"
@@ -258,10 +203,10 @@
                                 </div>
                                 <p class="col my-2">dk</p>
                             </div>
-                            <h4 lang="wllppr">Duvar Kağıdı</h4>
+                            <h5>Duvar Kağıdı</h5>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="dlywllppr">Günlük Duvar Kağıdı</p>
+                                    <p>Günlük Duvar Kağıdı</p>
                                 </div>
                                 <div class="col-2 mt-2">
                                     <label class=" checkbox-container">
@@ -272,28 +217,27 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="dlywllpprct">Günlük Duvar Kağıdı Kategorisi</p>
+                                    <p>Günlük Duvar Kağıdı Kategorisi</p>
                                 </div>
                                 <div class="col-4">
                                     <select id="daily-wallpaper-category" class="form-control">
-                                        <option value="nature" lang="ctgry[0]">Doğal</option>
-                                        <option value="textures-patterns" lang="ctgry[1]">Kaplamalar</option>
-                                        <option value="architecture" lang="ctgry[2]">Mimari</option>
-                                        <option value="travel" lang="ctgry[3]">Yolculuk</option>
-                                        <option value="animals" lang="ctgry[4]">Hayvanlar</option>
-                                        <option value="arts-culture" lang="ctgry[5]">Sanat</option>
-                                        <option value="business-work" lang="ctgry[6]">İş</option>
+                                        <option value="nature">Doğal</option>
+                                        <option value="textures-patterns">Kaplamalar</option>
+                                        <option value="architecture">Mimari</option>
+                                        <option value="Travel">Yolculuk</option>
+                                        <option value="animals">Hayvanlar</option>
+                                        <option value="arts-culture">Sanat</option>
+                                        <option value="business-work">İş</option>
                                     </select> </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-4 my-2">
-                                    <p lang="cstmwllppr">Özel Duvar Kağıdı</p>
+                                    <p>Özel Duvar Kağıdı</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="form-row">
                                         <label for="upload-wallpaper" class="custom-file-select btn btn-dark">
-                                            <i class="fas fa-file-upload"></i>
-                                            <p style="display:inline" lang="cstmwllpprbtn">Dosya Seç</p>
+                                            <i class="fas fa-file-upload"></i> <span>Dosya Seç</span>
                                         </label>
                                         <input type='file' id='upload-wallpaper' name="background-image" />
                                         <input id="custom-wallpaper" autocomplete="off" type="text" class="form-control"
@@ -308,9 +252,9 @@
                                 <option value="en">EN</option>
                             </select>
                             <button id="default-settings" type="button" class="btn btn-secondary" data-toggle="modal"
-                                data-target="#settings-modal" lang="dflt">Varsayılan</button>
+                                data-target="#settings-modal">Varsayılan</button>
                             <button type="submit" class="btn btn-success" data-toggle="modal"
-                                data-target="#settings-modal" lang="sv">Kaydet</button>
+                                data-target="#settings-modal">Kaydet</button>
                         </div>
                     </div>
                 </div>
@@ -318,11 +262,17 @@
         </form>
         <!-- settings edit form modal -->
     </section>
+    <footer>
+        <p class="text-center text-muted">Made by <a href="mailto:ahmetcetinkaya-@outlook.com"
+                class="text-reset text-decoration-none">Ahmet Çetinkaya</a></p>
+    </footer>
+    <audio id="pomodorosound" src="sounds/pomodoroalert.mp3" preload="auto"></audio>
+    <audio id="warningsound" src="sounds/warning.mp3" preload="auto"></audio>
+    <audio id="dangersound" src="sounds/danger.mp3" preload="auto"></audio>
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
