@@ -1,18 +1,32 @@
 {
-    "name": "amt homepage",
+    "name": "Pomowork",
     "version": "1.0",
-    "description": "Ana sayfayı çalışmalarınıza uygun olarak değiştirir.",
-    "author": "Ahmet Çetinkaya",
+    "description": "Changes the home page to suit your work.",
+    "author": "Ahmet Çetinkaya <ahmetcetinkaya-@outlook.com>",
+    "homepage_url": "https://github.com/ahmet-cetinkaya/Pomowork",
     "manifest_version": 2,
     "icons": {
-        "16": "/images/icon16.png",
-        "48": "/images/icon48.png",
-        "128": "/images/icon128.png"
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
     },
     "permissions": [
-        "unlimitedStorage"
+        "alarms",
+        "contextMenus",
+        "storage",
+        "notifications",
+        "tabs"
     ],
+    "browser_action": {
+        "default_title": "Pomowork",
+        "default_icon": "images/icon16.png"
+    },
     "chrome_url_overrides": {
         "newtab": "index.html"
-    }
+    },
+    "background": {
+        "persistent": true,
+        "page": "index.html"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

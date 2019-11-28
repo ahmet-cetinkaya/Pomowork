@@ -1,9 +1,14 @@
+@font-face {
+    font-family: 'material';
+    src: url("../webfonts/Roboto-Regular.ttf");
+}
+
 body {
     background-position: center !important;
     background-size: cover !important;
     background-attachment: scroll;
-    font-family: 'Roboto';
     overflow-y: auto;
+    font-family: 'material';
 }
 
 ::-webkit-scrollbar {
@@ -35,6 +40,10 @@ body {
 
 h4 {
     color: rgba(245, 245, 245, 0.753);
+}
+
+button:focus {
+    outline: 0 !important;
 }
 
 /* settings */
@@ -83,10 +92,9 @@ input[type=number]::-webkit-outer-spin-button {
     color: rgba(245, 245, 245, 0.9);
 }
 
-.modal-content h5 {
+.modal-content h4 {
     color: white;
     font-weight: bold;
-    margin-left: 20px;
 }
 
 .checkbox-container {
@@ -186,6 +194,10 @@ textarea {
         0 10px 10px rgba(0, 0, 0, 0.17);
 }
 
+.btn:focus {
+    outline: none !important;
+}
+
 #language {
     position: absolute;
     left: 10px;
@@ -215,16 +227,38 @@ input[type="file"] {
     position: relative;
     overflow: hidden;
     padding-top: 4%;
-    background: rgba(0, 0, 0, 0.2);
     color: rgba(245, 245, 245, 0.842);
     width: 220px;
     height: 220px;
     border: 2px rgba(0, 0, 0, 0.3) solid;
     border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13),
         0 3px 6px rgba(0, 0, 0, 0.20);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13),
         0 3px 6px rgba(0, 0, 0, 0.20);
+}
+
+#emj {
+    position: absolute;
+    left: 40px;
+    font-size: 150px;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+#minute {
+    margin: 10px 0px;
+    display: block;
+    height: 75px;
+    width: 216px;
+}
+
+#minute>p {
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0;
 }
 
 #pomodoro-section .water span {
@@ -280,6 +314,163 @@ input[type="file"] {
     opacity: .6;
 }
 
+#historybtn {
+    font-size: 15px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+#history>button {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+
+@keyframes easeOutElastic {
+    0% {
+        transform: translateX(0%);
+    }
+
+    16% {
+        transform: translateX(-132.27%);
+    }
+
+    28% {
+        transform: translateX(-86.88%);
+    }
+
+    44% {
+        transform: translateX(-104.63%);
+    }
+
+    59% {
+        transform: translateX(-98.36%);
+    }
+
+    73% {
+        transform: translateX(-100.58%);
+    }
+
+    88% {
+        transform: translateX(-98.8%);
+    }
+
+    100% {
+        transform: translateX(-99%);
+    }
+}
+
+@keyframes easeInElastic {
+    0% {
+        transform: translateX(0%);
+    }
+
+    4% {
+        transform: translateX(-0.04%);
+    }
+
+    8% {
+        transform: translateX(-0.16%);
+    }
+
+    14% {
+        transform: translateX(-0.17%);
+    }
+
+    18% {
+        transform: translateX(0.04%);
+    }
+
+    26% {
+        transform: translateX(0.58%);
+    }
+
+    28% {
+        transform: translateX(0.55%);
+    }
+
+    56% {
+        transform: translateX(4.63%);
+    }
+
+    58% {
+        transform: translateX(4.4%);
+    }
+
+    86% {
+        transform: translateX(37.06%);
+    }
+
+    100% {
+        transform: translateX(-99%);
+    }
+}
+
+#history.no-animation {
+    -webkit-animation: none;
+    animation: none;
+}
+
+#history {
+    position: absolute;
+    top: 0;
+    right: -102%;
+    z-index: 1;
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+    display: flex;
+    padding: 75px 15px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    animation: easeInElastic 2s reverse;
+}
+
+#history.show {
+    display: flex;
+    animation: easeOutElastic 2s forwards;
+}
+
+
+#history .skill {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+#history .skill .graph {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    background: crimson;
+}
+
+#history .skill .graph:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 0;
+    background: crimson;
+}
+
+#history .skill .graph:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: crimson;
+}
+
+#history .skill .name {
+    position: absolute;
+    bottom: -18px;
+    color: rgba(245, 245, 245, 0.842);
+    font-size: 11px;
+}
+
 /* todo */
 #todosList {
     height: 400px;
@@ -295,6 +486,7 @@ input[type="file"] {
     max-height: 40px;
     overflow: hidden;
     padding: 7px 25px;
+    padding-right: 30px;
     margin-bottom: 4px;
     border-radius: 36px;
     background: rgba(0, 0, 0, 0.2);
@@ -318,6 +510,22 @@ input[type="file"] {
     -webkit-transition: .5s ease-out;
     -o-transition: .5s ease-out;
     transition: .5s ease-out;
+}
+
+.fas.fa-book-open {
+    position: absolute;
+    right: 5px;
+    color: #17a2b8;
+    opacity: 0.8;
+    margin: 3px;
+}
+
+#todos>li>a:nth-child(2) {
+    color: #17a2b8;
+}
+
+#todos>li>a:nth-child(2):hover {
+    text-decoration: none;
 }
 
 #todos li:hover,
@@ -388,6 +596,38 @@ input[type="file"] {
     opacity: .8;
 }
 
+#alertInTodo {
+    position: relative;
+}
+
+#alertInTodo div {
+    position: absolute;
+    right: -15px;
+    cursor: progress;
+}
+
+#alertInBookmark {
+    position: relative;
+    float: none;
+}
+
+#alertInBookmark div {
+    position: absolute;
+    left: -130px;
+    cursor: progress;
+}
+
+#alertInNotes {
+    position: relative;
+
+}
+
+#alertInNotes div {
+    position: absolute;
+    right: 0;
+    cursor: progress;
+}
+
 #alertInBookmark {
     position: absolute;
     left: 50%;
@@ -409,14 +649,6 @@ input[type="file"] {
     height: 800px;
     overflow-x: hidden;
     overflow-y: auto;
-}
-
-footer {
-    position: fixed;
-    right: 5px;
-    bottom: -10px;
-    display: inline;
-    opacity: 0.3;
 }
 
 @media only screen and (max-width: 991px) {
