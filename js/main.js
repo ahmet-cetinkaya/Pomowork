@@ -658,7 +658,6 @@ function tooglePomodoroHistory() {
             .then(p => {
                 for (var i = 0; i < pomodoro.graphs.length; i++) {
                     smoothGraphs(pomodoro.graphs[i], 100 * (p.history[Object.keys(p.history)[i]] / 24));
-                    // pomodoro.graphs[i].style.height = `${(100 * (p.history[Object.keys(p.history)[i]] / 24))}%`;
                     pomodoro.graphs[i].setAttribute("data-content", pomodoro.graphs[i].getAttribute("data-content").concat(p.history[Object.keys(p.history)[i]]));
                 }
             })
