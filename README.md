@@ -19,7 +19,8 @@ Work and time management assistant.
 - Open-source software: 
 https://github.com/ahmet-cetinkaya/Pomowork
 
-Chrome Web Store: (in review. Yo)
+Chrome Web Store: (in review by Google.)
+You can install it manually by selecting the source folder you downloaded by opening developer mode at "chrome://extensions/".
 
 ## Screenshots
 
