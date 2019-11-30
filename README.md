@@ -5,7 +5,6 @@ Work and time management assistant.
 
 
 - A functional new tab for your work
-
 - Pomodoro countdown timer in new tab and toolbar
 - Track average Pomodoro time
 - Configurable settings
@@ -20,6 +19,7 @@ Work and time management assistant.
 https://github.com/ahmet-cetinkaya/Pomowork
 
 Chrome Web Store: (in review by Google.)
+
 You can install it manually by selecting the source folder you downloaded by opening developer mode at "chrome://extensions/".
 
 ## Screenshots
