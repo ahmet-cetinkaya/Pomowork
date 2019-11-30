@@ -657,11 +657,30 @@ function tooglePomodoroHistory() {
         getFromStorage("pomodoro")
             .then(p => {
                 for (var i = 0; i < pomodoro.graphs.length; i++) {
-                    pomodoro.graphs[i].style.height = `${(100 * (p.history[Object.keys(p.history)[i]] / 24))}%`;
+                    smoothGraphs(pomodoro.graphs[i], 100 * (p.history[Object.keys(p.history)[i]] / 24));
+                    // pomodoro.graphs[i].style.height = `${(100 * (p.history[Object.keys(p.history)[i]] / 24))}%`;
                     pomodoro.graphs[i].setAttribute("data-content", pomodoro.graphs[i].getAttribute("data-content").concat(p.history[Object.keys(p.history)[i]]));
                 }
             })
-    } else if (history.className === "show") history.classList.remove("show");
+    } else if (history.className === "show") {
+        history.classList.remove("show");
+        for (var i = 0; i < pomodoro.graphs.length; i++) {
+            pomodoro.graphs[i].setAttribute("data-content", `${pomodoro.graphs[i].getAttribute("data-content").split(":")[0]}: `);
+        }
+    }
+}
+
+function smoothGraphs(graph, distance) {
+    const startPosition = graph.style.height;
+    window.requestAnimationFrame(step);
+    let start = null;
+
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const currenttime = timestamp - start;
+        graph.style.height = `${easeOutSine(currenttime, startPosition, distance, 1000)}%`
+        if (currenttime < 1000) window.requestAnimationFrame(step);
+    }
 }
 
 /// Todos
@@ -957,6 +976,7 @@ function addNoteToUI(e) {
     const notetextarena = document.querySelectorAll(".alert.alert-warning.col");
     newnotearena.id = notetextarena.length;
     newnotearena.className = "alert alert-warning col";
+    newnotearena.setAttribute("spellcheck", "false");
     getFromStorage("settings")
         .then(settings => {
             newnotearena.placeholder = eval(`lang.entrnt.${settings.language}`);
@@ -1227,6 +1247,7 @@ function showAlert(alertid, type, message) {
 function smoothWave(distance) {
     let startPosition = parseInt(pomodoro.water.style.height);
     distance = distance - startPosition;
+
     window.requestAnimationFrame(step);
     let start = null;
 
