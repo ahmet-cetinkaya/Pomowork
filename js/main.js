@@ -538,7 +538,7 @@ chrome.alarms.onAlarm.addListener(() => {
                     smoothWave(235 - (235 * (p.countdowntime / p.countdowntimepercent)))
                     if (!p.countdowntime) {
                         sounds.pomodoro.play();
-                        setTimeout(() => smoothWave(-235), 1100);
+                        smoothWave(-252);
                         if (p.timeprocess === "focus") {
                             p.allpomodorotimes++;
                             p.pomodorotimes++;
@@ -611,7 +611,7 @@ function checkAlarm(callback) {
                             newClass = "btn btn-success";
                             pomodoro.minutes.innerText = settings.start;
                             pomodoro.emj.src = "";
-                            setTimeout(() => smoothWave(-235), 1100);
+                            setTimeout(() => smoothWave(-252), 1100);
                             setBadge("", "focus");
                             chrome.contextMenus.update('pomodoro', {
                                 title: eval(`lang.strt.${settings.language}`)
