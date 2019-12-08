@@ -306,8 +306,8 @@ function eventListeners() {
     document.addEventListener("DOMContentLoaded", () => {
         setDefaultSettings();
         dailyControl();
-        loadAllBookmarksToUI();
         loadAllTodosToUI();
+        loadAllBookmarksToUI();
         loadAllNotesToUI();
         getFromStorage("settings")
             .then(settings => {
@@ -320,22 +320,27 @@ function eventListeners() {
         searchInput.focus();
         $('[data-toggle="popover"]').popover()
     });
+    chrome.notifications.onClicked.addListener(() => {
+        chrome.tabs.create({
+            url: "chrome://newtab"
+        });
+    });
+    chrome.browserAction.onClicked.addListener(() => pomodoroTime("toggle"));
     pomodoro.startbutton.addEventListener("click", () => pomodoroTime("toggle"));
     pomodoro.breakbutton.addEventListener("click", () => pomodoroTime("break"));
     pomodoro.historybtn.addEventListener("click", tooglePomodoroHistory);
     pomodoro.historyClose.addEventListener("click", tooglePomodoroHistory);
     todo.form.addEventListener("submit", addTodo);
-    todo.list.addEventListener("click", deletetodo);
+    todo.list.addEventListener("click", (e) => {
+        if (e.target.className === "fas fa-check-circle") deletetodo(e)
+    });
     todo.filter.addEventListener("keyup", filterTodos);
     todo.clear.addEventListener("click", clearAllTodos);
     googlesearchform.addEventListener("submit", googlesearch);
     bookmarkaddform.addEventListener("submit", addBookmark);
     bookmarkList.addEventListener("click", (e) => {
-        if (e.target.className === "btn btn-dark edit-item") {
-            editBookmark("edit", e.target.parentElement.getAttribute("index"))
-        } else if (e.target.className === "fas fa-ellipsis-v") {
-            editBookmark("edit", e.target.parentElement.parentElement.getAttribute("index"))
-        }
+        if (e.target.className === "btn btn-dark edit-item") editBookmark("edit", e.target.parentElement.getAttribute("index"))
+        else if (e.target.className === "fas fa-ellipsis-v") editBookmark("edit", e.target.parentElement.parentElement.getAttribute("index"))
     });
     bookmarkedit.form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -353,13 +358,6 @@ function eventListeners() {
     setting.form.addEventListener("submit", saveSettings);
     setting.default.addEventListener("click", () => setDefaultSettings("save"));
     setting.upload.addEventListener("change", () => setting.uploadLabel.textContent = setting.upload.files[0].name);
-    chrome.notifications.onClicked.addListener(() => {
-        chrome.tabs.create({
-            url: "chrome://newtab"
-        });
-    });
-
-    chrome.browserAction.onClicked.addListener(() => pomodoroTime("toggle"));
 };
 
 /// Pomodoro
@@ -527,44 +525,41 @@ function pomodoroTime(process) {
 }
 
 chrome.alarms.onAlarm.addListener(() => {
-    getFromStorage("settings")
-        .then(settings => {
-            getFromStorage("pomodoro")
-                .then(p => {
-                    p.countdowntime--;
-                    pomodoro.minutes.innerText = p.countdowntime;
-                    pomodoro.emj.innerText = p.emj;
-                    setBadge(`${p.countdowntime}`)
-                    smoothWave(235 - (235 * (p.countdowntime / p.countdowntimepercent)))
-                    if (!p.countdowntime) {
-                        sounds.pomodoro.play();
-                        smoothWave(-252);
-                        if (p.timeprocess === "focus") {
-                            p.allpomodorotimes++;
-                            p.pomodorotimes++;
-                            pomodoro.allpomodoro.innerText = p.allpomodorotimes;
-                            pomodoro.longbreak.innerText = p.pomodorotimes;
-                            if (p.pomodorotimes / 4 !== 1) {
-                                pomodoroTime("break");
-                                chrome.notifications.create(getTimeNow("notification"), notifications.fnshpmdr);
-                            } else {
-                                pomodoroTime("longbreak");
-                                chrome.notifications.create(getTimeNow("notification"), notifications.fnsh4pmdr);
-                            }
-                        } else if (p.timeprocess === "break") {
-                            pomodoroTime("focus");
-                            chrome.notifications.create(getTimeNow("notification"), notifications.fnshbrk);
-                        } else if (p.timeprocess === "longbreak") {
-                            p.pomodorotimes = 0;
-                            pomodoro.longbreak.innerText = p.pomodorotimes;
-                            pomodoroTime("focus");
-                            chrome.notifications.create(getTimeNow("notification"), notifications.fnshlgbrk);
-                        }
+    getFromStorage("pomodoro")
+        .then(p => {
+            p.countdowntime--;
+            pomodoro.minutes.innerText = p.countdowntime;
+            pomodoro.emj.innerText = p.emj;
+            setBadge(`${p.countdowntime}`)
+            smoothWave(235 - (235 * (p.countdowntime / p.countdowntimepercent)))
+            if (!p.countdowntime) {
+                sounds.pomodoro.play();
+                smoothWave(-252);
+                if (p.timeprocess === "focus") {
+                    p.allpomodorotimes++;
+                    p.pomodorotimes++;
+                    pomodoro.allpomodoro.innerText = p.allpomodorotimes;
+                    pomodoro.longbreak.innerText = p.pomodorotimes;
+                    if (p.pomodorotimes / 4 !== 1) {
+                        pomodoroTime("break");
+                        chrome.notifications.create(getTimeNow("notification"), notifications.fnshpmdr);
+                    } else {
+                        pomodoroTime("longbreak");
+                        chrome.notifications.create(getTimeNow("notification"), notifications.fnsh4pmdr);
                     }
-                    chrome.storage.local.set({
-                        "pomodoro": JSON.stringify(p)
-                    });
-                })
+                } else if (p.timeprocess === "break") {
+                    pomodoroTime("focus");
+                    chrome.notifications.create(getTimeNow("notification"), notifications.fnshbrk);
+                } else if (p.timeprocess === "longbreak") {
+                    p.pomodorotimes = 0;
+                    pomodoro.longbreak.innerText = p.pomodorotimes;
+                    pomodoroTime("focus");
+                    chrome.notifications.create(getTimeNow("notification"), notifications.fnshlgbrk);
+                }
+            }
+            chrome.storage.local.set({
+                "pomodoro": JSON.stringify(p)
+            });
         })
 });
 
@@ -780,11 +775,9 @@ function TodoChecker(sameTodo) {
 }
 
 function deletetodo(e) {
-    if (e.target.className === "fas fa-check-circle") {
-        e.target.parentElement.parentElement.remove();
-        deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
-        showAlert("alertInTodo", "success", lang.cpltetd);
-    }
+    e.target.parentElement.parentElement.remove();
+    deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
+    showAlert("alertInTodo", "success", lang.cpltetd);
 }
 
 function deleteTodoFromStorage(deteledtodo) {
@@ -1094,7 +1087,6 @@ function setDefaultSettings(process) {
                     dailyControl();
                     setWallpaper();
                     loadExtension();
-                    // checkAlarm();
                 });
             } else if (process == "save") {
                 chrome.storage.local.set({
@@ -1211,11 +1203,8 @@ function getTimeNow(style) {
 function getFromStorage(key) {
     return new Promise(resolve => {
         chrome.storage.local.get([key], result => {
-            if (Object.entries(result).length !== 0) {
-                result = JSON.parse(result[Object.keys(result)[0]]);
-            } else {
-                result = []
-            }
+            if (Object.entries(result).length !== 0) result = JSON.parse(result[Object.keys(result)[0]]);
+            else result = [];
             resolve(result);
         })
     })
