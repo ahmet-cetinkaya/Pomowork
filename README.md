@@ -24,9 +24,9 @@ You can install it manually by selecting the source folder you downloaded by ope
 
 ## Screenshots
 
-![](screenshots/ss-1.jpg)
-![](screenshots/ss-2.jpg)
-![](screenshots/ss-3.jpg)
-![](screenshots/ss-4.jpg)
+![](screenshots/ss-1.png)
+![](screenshots/ss-2.png)
+![](screenshots/ss-3.png)
+![](screenshots/ss-4.png)
 
 Note: Pomodoro® and The Pomodoro Technique® are trademarks of Francesco Cirillo. Marinara is not affiliated or associated with or endorsed by Pomodoro®, The Pomodoro Technique® or Francesco Cirillo.
