@@ -15,10 +15,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3">
-
-
-
+            <div id="firstsection" class="col-xl-3">
                 <div id="pomodoro-section" class="mx-auto my-5 text-center">
                     <div class="water">
                         <span class="wave"></span>
@@ -38,8 +35,6 @@
                     <p style="font-size: 14px; display: inline;" lang="ttlpmr"> </p>
                     <p style="font-size: 14px; display: inline;"><span id="allpomodoro">0</span>
                         (<span id="longbreak">0</span>/4)</p>
-
-
                     <div id="history" class="no-animation">
                         <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -88,17 +83,7 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div id="todos-section" class="mx-auto">
-                    <div class="row my-2">
-                        <div class="col-3 my-2">
-                            <h4 lang="tds">Görevler</h4>
-                        </div>
-                        <div class="col-9">
-                            <div id="alertInTodo" style="cursor: progress;"></div>
-                        </div>
-                    </div>
                     <form id="todo-form" name="form" class="mx-auto">
                         <div class="form-row align-items-center">
                             <div class="col-9">
@@ -109,6 +94,34 @@
                                 <button type="submit" class="btn btn-info" lang="addtds">Görev Ekleyin</button>
                             </div>
                         </div>
+                        <div id="todo-options" class="row">
+                            <div id="filters" class="col-6">
+                                <i class="filter-color fas fa-circle" style="color: #e46b67" tag="red"></i>
+                                <i class="filter-color fas fa-circle" style="color: #d1b281" tag="yellow"></i>
+                                <i class="filter-color fas fa-circle" style="color: #a0cbf1;" tag="blue"></i>
+                                <i class="filter-color fas fa-circle" style="color: #4aa079;" tag="green"></i>
+                                <i class="filter-color fas fa-circle" style="color: #788cde;" tag="purple"></i>
+                            </div>
+                            <div id="estimated-pomodoros-bg" class="col-12"></div>
+                            <div id="estimated-pomodoros" class="col-6">
+                                <a class="estimated-pomodoro selected" value="1"><i class="fas fa-circle"></i></a>
+                                <a class="estimated-pomodoro" value="2"><i class="fas fa-circle"></i></a>
+                                <a class="estimated-pomodoro" value="3"><i class="fas fa-circle"></i></a>
+                                <a class="estimated-pomodoro" value="4"><i class="fas fa-circle"></i></a>
+                                <select class="estimated-pomodoro form-control">
+                                    <option style="display:none"></option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                     <div id="todosList">
                         <ul id="todos" class="list-group">
@@ -116,10 +129,18 @@
                     </div>
                     <input class="form-control" autocomplete="off" type="text" name="filter" id="filter"
                         placeholder="Bir Görev Arayın" lang="srchtds">
-                    <button id="clear-todos" class="btn btn-dark my-2" lang="cmplttds">Tüm Görevleri Tamamla</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button id="clear-todos" class="btn btn-dark my-2" lang="cmplttds">Tüm Görevleri
+                                Tamamla</button>
+                        </div>
+                        <div class="col-6">
+                            <div id="alertInTodo" style="cursor: progress;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="main-section" class="col-lg-6">
+            <div id="main-section" class="col-xl-6">
                 <form id="google-search-form" class="col-8 center" name="search">
                     <img style="float: left;" src="images/googlelogo_color_92x30dp.png">
                     <input id="google-search-input" autocomplete="off" class="form-control col-12" type="text"
@@ -132,7 +153,7 @@
                 </div>
                 <div id="alertInBookmark"></div>
             </div>
-            <div class="col-lg-3 my-5">
+            <div class="col-xl-3 my-5">
                 <div class="row">
                     <div class="col-6">
                         <button id="noteForm" type="submit" class="btn btn-warning" lang="addnt">Not Ekleyin</button>
@@ -283,7 +304,8 @@
                                         <option value="animals" lang="ctgry[4]">Hayvanlar</option>
                                         <option value="arts-culture" lang="ctgry[5]">Sanat</option>
                                         <option value="business-work" lang="ctgry[6]">İş</option>
-                                    </select> </div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-4 my-2">
@@ -317,12 +339,69 @@
             </div>
         </form>
         <!-- settings edit form modal -->
+        <!-- login form modal -->
+        <a id="login-button"><i class="fas fa-user"></i></a>
+        <form id="login-form" name="login">
+            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" lang="lgn">Giriş yap</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="UserName" class="form-group">
+                                <label for="InputName">Ad Soyad</label>
+                                <input type="text" class="form-control" id="InputName" placeholder="adınızı giriniz">
+                            </div>
+                            <div id="UserMail" class="form-group">
+                                <label for="InputEmail">E-Posta adresi</label>
+                                <input type="email" class="form-control" id="InputEmail"
+                                    placeholder="e-postanızı giriniz" required>
+                            </div>
+                            <div id="UserPass" class="form-group">
+                                <label for="InputPassword">Şifre</label>
+                                <input type="password" class="form-control" id="InputPassword"
+                                    placeholder="şifrenizi giriniz" required>
+                            </div>
+                            <p class="text-muted">Hesabınız yoksa <a id="newUser" href="#">yeni hesap</a>
+                                açabilirsiniz
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <div id="alertInLogin" style="cursor: progress;"></div>
+                            <button type="submit" class="btn btn-primary">Giriş Yapın</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- login form modal -->
+        <!-- user form modal -->
+        <div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button id="quit" data-dismiss="modal" class="btn btn-danger">Çıkış Yapın</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- user form modal -->
     </section>
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>

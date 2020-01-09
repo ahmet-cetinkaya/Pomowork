@@ -25,6 +25,10 @@ const todo = {
     list: document.querySelector("#todos"),
     filter: document.querySelector("#filter"),
     clear: document.querySelector("#clear-todos"),
+    options: document.querySelector("#todo-options"),
+    estimatedpomodoros: document.querySelectorAll("a.estimated-pomodoro"),
+    estimatedpomodorosSelect: document.querySelector("#estimated-pomodoros > select"),
+    filtercolor: document.querySelectorAll("#filters .filter-color"),
 }
 const googlesearchform = document.querySelector("#google-search-form")
 const searchInput = document.querySelector("#google-search-input")
@@ -55,6 +59,19 @@ const setting = {
     uploadLabel: document.querySelector("#settings-modal .custom-file-select p"),
     default: document.querySelector("#default-settings"),
     language: document.querySelector("#language")
+}
+const login = {
+    title: document.querySelector("#login-modal > div > div > div.modal-header > h4"),
+    icon: document.querySelector("#login-button"),
+    form: document.querySelector("#login-form"),
+    name: document.querySelector("#UserName"),
+    nameInpt: document.querySelector("#InputName"),
+    mail: document.querySelector("#UserMail"),
+    mailInpt: document.querySelector("#InputEmail"),
+    pass: document.querySelector("#UserPass"),
+    passInpt: document.querySelector("#InputPassword"),
+    newUser: document.querySelector("#login-modal > div > div > div.modal-body > p"),
+    btn: document.querySelector("#login-modal > div > div > div.modal-footer > button")
 }
 const lang = {
     strt: {
@@ -94,10 +111,6 @@ const lang = {
     ttlpmr: {
         en: "Total Pomodoro: ",
         tr: "Toplam Pomodoro: ",
-    },
-    tds: {
-        en: "To-Do",
-        tr: "Görevler",
     },
     entrtds: {
         en: "Enter A To-do",
@@ -280,8 +293,32 @@ const lang = {
     days: {
         en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         tr: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
+    },
+    lgn: {
+        en: "Login",
+        tr: "Giriş"
+    },
+    thrisuser: {
+        en: "Email already registered.",
+        tr: "Eposta zaten kayıtlı."
+    },
+    scssrgstr: {
+        en: "Register is successful.",
+        tr: "Üye olma başarılı."
+    },
+    ntfnduser: {
+        en: "E Mail is not registered.",
+        tr: "E Posta kayıtlı değil."
+    },
+    wrngpss: {
+        en: "Wrong password.",
+        tr: "Şifre yanlış."
+    },
+    sccsslgn: {
+        en: "Signed in",
+        tr: "Giriş yapıldı."
     }
-}
+} // temporal
 
 /// XMLHttpRequest
 class Request {
@@ -304,6 +341,7 @@ eventListeners();
 
 function eventListeners() {
     document.addEventListener("DOMContentLoaded", () => {
+        recoveryUpdate();
         setDefaultSettings();
         dailyControl();
         loadAllTodosToUI();
@@ -318,6 +356,7 @@ function eventListeners() {
                 }
             })
         searchInput.focus();
+        // document.querySelector("#todosList").style.height = `${window.innerHeight*48/100}px`;
         $('[data-toggle="popover"]').popover()
     });
     chrome.notifications.onClicked.addListener(() => {
@@ -331,8 +370,62 @@ function eventListeners() {
     pomodoro.historybtn.addEventListener("click", tooglePomodoroHistory);
     pomodoro.historyClose.addEventListener("click", tooglePomodoroHistory);
     todo.form.addEventListener("submit", addTodo);
+    todo.input.addEventListener("focus", () => {
+        document.querySelector("#estimated-pomodoros").classList.add("show")
+        document.querySelector("#estimated-pomodoros-bg").classList.add("show")
+    })
+    todo.input.addEventListener("blur", () => {
+        setInterval(() => {
+            let isFormHover = isHover(todo.form)
+            let isOptnsHover = isHover(todo.options)
+            if (isFormHover == false && isOptnsHover == false) setDefultTodosOptions()
+        }, 15000);
+    })
+    todo.estimatedpomodoros.forEach(e => {
+        e.addEventListener("mouseover", () => {
+            todo.estimatedpomodoros.forEach(p => {
+                if (Number(p.getAttribute("value")) <= Number(e.getAttribute("value"))) p.style.color = "#491911"
+                else p.style.color = ""
+            })
+        })
+        e.addEventListener("click", () => {
+            todo.estimatedpomodoros.forEach(p => {
+                if (Number(p.getAttribute("value")) <= Number(e.getAttribute("value"))) p.classList.add("selected")
+                else p.classList.remove("selected")
+                for (let i = 0; i < 6; i++) todo.estimatedpomodorosSelect.options[i].selected = false;
+                todo.estimatedpomodorosSelect.removeAttribute("style")
+            })
+        })
+    })
+    todo.estimatedpomodorosSelect.addEventListener("change", (e) => {
+        e.target.style.background = "#ca4f3a"
+        todo.estimatedpomodoros.forEach(p => {
+            p.classList.add("selected")
+        })
+    })
+
+    todo.filtercolor.forEach(f => {
+        f.addEventListener("click", () => {
+            if (document.querySelector("#estimated-pomodoros-bg").classList[1] == "show") {
+                todo.filtercolor.forEach(f => f.removeAttribute("value"))
+                todo.input.setAttribute('style', `background:${f.style.color} !important; color:white`);
+                f.setAttribute("value", "selected");
+            } else if (f.classList.contains('fa-dot-circle')) {
+                f.classList.replace("fa-dot-circle", "fa-circle")
+                filterTagTodos(undefined)
+            } else {
+                todo.filtercolor.forEach(filter => {
+                    if (!filter.classList.contains("fa-circle")) filter.classList.replace("fa-dot-circle", "fa-circle")
+                })
+                f.classList.replace("fa-circle", "fa-dot-circle")
+                filterTagTodos(f)
+            }
+        })
+    })
+    $("#estimated-pomodoros > button.close").click(() => setDefultTodosOptions());
     todo.list.addEventListener("click", (e) => {
         if (e.target.className === "fas fa-check-circle") deletetodo(e)
+        if (e.target.className === "fas fa-thumbtack") pinTodo(e.target)
     });
     todo.filter.addEventListener("keyup", filterTodos);
     todo.clear.addEventListener("click", clearAllTodos);
@@ -358,8 +451,100 @@ function eventListeners() {
     setting.form.addEventListener("submit", saveSettings);
     setting.default.addEventListener("click", () => setDefaultSettings("save"));
     setting.upload.addEventListener("change", () => setting.uploadLabel.textContent = setting.upload.files[0].name);
+    login.newUser.addEventListener("click", () => {
+        login.name.style.display = 'block'
+        login.nameInpt.required = true;
+        login.newUser.style.display = 'none'
+        login.form.setAttribute('name', 'register')
+        login.btn.textContent = 'Üye ol'
+        login.btn.classList.replace('btn-primary', 'btn-success')
+        login.title.textContent = 'Üye ol'
+    })
+    login.form.addEventListener("submit", loginUser)
+    login.icon.addEventListener("click", () => {
+        getFromStorage('login')
+            .then(r => {
+                if (r[0]) {
+                    document.querySelector("#user-modal > div > div > div.modal-header > h4").textContent = r[1]
+                    $('#user-modal').modal('show');
+                } else $('#login-modal').modal('show');
+            })
+    })
+    document.querySelector("#quit").addEventListener('click', () => {
+        chrome.storage.local.set({
+            'login': JSON.stringify([false])
+        })
+        chrome.storage.local.set({
+            "todos": JSON.stringify([])
+        });
+        chrome.storage.local.set({
+            "notes": JSON.stringify([])
+        });
+        chrome.storage.local.set({
+            "bookmarks": JSON.stringify([])
+        });
+        loadAllTodosToUI();
+        loadAllBookmarksToUI();
+        loadAllNotesToUI();
+        // chrome.storage.local.clear()
+    })
 };
 
+function loginUser(e) {
+    e.preventDefault();
+    getFromStorage('users')
+        .then(async (users) => {
+            if (e.target.getAttribute('name') === 'login') {
+                if (users[login.mailInpt.value.trim()] !== undefined) {
+                    if (login.passInpt.value === users[login.mailInpt.value.trim()].pass) {
+                        $('#login-modal').modal('hide');
+                        const usersStorage = JSON.parse(users[login.mailInpt.value.trim()].storage);
+                        chrome.storage.local.set({
+                            "pomodoro": usersStorage.pomodoro
+                        });
+                        chrome.storage.local.set({
+                            "settings": usersStorage.settings
+                        });
+                        chrome.storage.local.set({
+                            "todos": usersStorage.todos
+                        });
+                        chrome.storage.local.set({
+                            "notes": usersStorage.notes
+                        });
+                        chrome.storage.local.set({
+                            "bookmarks": usersStorage.bookmarks
+                        });
+                        chrome.storage.local.set({
+                            "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
+                        });
+                        loadAllTodosToUI();
+                        loadAllBookmarksToUI();
+                        loadAllNotesToUI();
+                        showAlert("alertSettings", "success", lang.sccsslgn)
+                    } else showAlert("alertInLogin", "danger", lang.wrngpss)
+                } else showAlert("alertInLogin", "danger", lang.ntfnduser)
+            } else {
+                if (users[login.mailInpt.value.trim()] == undefined) {
+                    let storage = await getFromStorage('all')
+                    if (storage.todos === undefined) storage.todos = "[]"
+                    if (storage.bookmarks === undefined) storage.bookmarks = "[]"
+                    if (storage.notes === undefined) storage.notes = "[]"
+                    users[login.mailInpt.value.trim()] = {
+                        'pass': login.passInpt.value,
+                        'name': login.nameInpt.value,
+                        'storage': JSON.stringify(storage)
+                    }
+                    chrome.storage.local.set({
+                        "users": JSON.stringify(users)
+                    });
+                    showAlert("alertInLogin", "success", lang.scssrgstr)
+                    setTimeout(() => {
+                        $('#login-modal').modal('hide');
+                    }, 1000);
+                } else showAlert("alertInLogin", "danger", lang.thrisuser)
+            }
+        });
+}
 /// Pomodoro
 
 var notifications;
@@ -400,8 +585,10 @@ function loadExtension() {
                             currentWindow: true
                         }, tabs => {
                             addReadLater({
-                                name: tabs[0].title,
-                                url: tabs[0].url
+                                todo: tabs[0].title,
+                                url: tabs[0].url,
+                                estimation: 1,
+                                tag: null
                             });
                         });
                     }
@@ -471,6 +658,32 @@ function loadExtension() {
                         "fr": 0,
                         "sa": 0,
                         "su": 0,
+                    },
+                    "hours": {
+                        0: 4,
+                        1: 4,
+                        2: 3,
+                        3: 2,
+                        4: 3,
+                        5: 4,
+                        6: 4.5,
+                        7: 7.5,
+                        8: 8.5,
+                        9: 8.5,
+                        10: 8.5,
+                        11: 8.5,
+                        12: 6.5,
+                        13: 6.5,
+                        14: 6,
+                        15: 5,
+                        16: 6.5,
+                        17: 7,
+                        18: 7,
+                        19: 6,
+                        20: 6,
+                        21: 6,
+                        22: 6,
+                        23: 5,
                     }
                 }
                 chrome.storage.local.set({
@@ -540,6 +753,18 @@ chrome.alarms.onAlarm.addListener(() => {
                     p.pomodorotimes++;
                     pomodoro.allpomodoro.innerText = p.allpomodorotimes;
                     pomodoro.longbreak.innerText = p.pomodorotimes;
+                    const pinnedTodo = document.querySelector("#todos > li:nth-child(1) > i.estimated-pomodoro.fas.fa-circle > span")
+                    if (Number(pinnedTodo.textContent) > 1) {
+                        pinnedTodo.textContent--
+                        getFromStorage("todos").then(todo => {
+                            todo[0].estimation--
+                            chrome.storage.local.set({
+                                "todos": JSON.stringify(todo)
+                            });
+                        })
+                    }
+                    for (h in p.hours) p.hours[h] -= .1
+                    p.hours[getTimeNow('hour')] += .2;
                     if (p.pomodorotimes / 4 !== 1) {
                         pomodoroTime("break");
                         chrome.notifications.create(getTimeNow("notification"), notifications.fnshpmdr);
@@ -679,20 +904,35 @@ function smoothGraphs(graph, distance) {
 
 /// Todos
 function loadAllTodosToUI() {
+    if (document.querySelectorAll("#todos > li").length > 0) document.querySelectorAll("#todos > li").forEach(r => r.remove())
     getFromStorage("todos")
         .then(todos => todos.forEach(todo => addTodoToUI(todo)))
 }
 
 function addTodo(e) {
     let newTodo;
+    let estimation;
+    let tag = null
     if (typeof e === 'object') {
-        newTodo = todo.input.value.trim();
+        if (todo.estimatedpomodorosSelect.value == "") estimation = document.querySelectorAll(".estimated-pomodoro.selected").length
+        else estimation = todo.estimatedpomodorosSelect.value
+        todo.filtercolor.forEach(e => {
+            if (e.getAttribute("value") === "selected") tag = e.getAttribute("tag")
+        })
+        newTodo = {
+            todo: todo.input.value.trim(),
+            estimation: estimation,
+            tag: tag
+        }
         todo.input.value = "";
         e.preventDefault();
-    } else if (typeof e === 'string') newTodo = e.trim();
-    if (typeof e === 'object' && newTodo == "") {
-        showAlert("alertInTodo", "danger", lang.plsentrtodo)
-    } else {
+    } else if (typeof e === 'string') newTodo = {
+        todo: e.trim(),
+        estimation: 1,
+        tag: tag
+    }
+    if (e.type === 'submit' && newTodo.todo == "") showAlert("alertInTodo", "danger", lang.plsentrtodo)
+    else {
         TodoChecker(newTodo).then(check => {
             if (check) showAlert("alertInTodo", "danger", lang.alrdythr)
             else {
@@ -700,6 +940,7 @@ function addTodo(e) {
                 addTodoToStorage(newTodo);
                 showAlert("alertInTodo", "warning", lang.nwtdadd);
             }
+            setDefultTodosOptions();
         })
     }
 }
@@ -717,23 +958,40 @@ function addReadLater(page) {
 
 function addTodoToUI(InputTodo) {
     const listItem = document.createElement("li");
+    const todoName = document.createElement("p")
     const deleteLink = document.createElement("a");
-    if (typeof InputTodo === 'object') {
-        var readLaterLink = document.createElement("a");
-        readLaterLink.href = InputTodo.url;
-        readLaterLink.textContent = InputTodo.name;
-        var readLaterIcon = document.createElement("i");
-        readLaterIcon.className = "fas fa-book-open ml-2"
-    }
+    const estimation = document.createElement("i");
+    const pomodorocount = document.createElement("span");
+    const pin = document.createElement("i")
     deleteLink.href = "#";
     deleteLink.className = "delete-item mr-2";
     deleteLink.innerHTML = "<i class='fas fa-check-circle'></i>";
     listItem.className = "list-group-item d-flex";
+    listItem.classList.add(InputTodo.tag)
+    listItem.setAttribute("tag", InputTodo.tag)
     listItem.appendChild(deleteLink);
-    if (typeof InputTodo === 'object') {
+    estimation.className = "estimated-pomodoro fas fa-circle"
+    pomodorocount.textContent = InputTodo.estimation
+    estimation.appendChild(pomodorocount)
+    if (todo.list.children.length == 0) pin.className = "fas fa-thumbtack pinned"
+    else pin.className = "fas fa-thumbtack"
+    if (InputTodo.url !== undefined) {
+        var readLaterLink = document.createElement("a");
+        readLaterLink.href = InputTodo.url;
+        readLaterLink.textContent = InputTodo.todo;
+        var readLaterIcon = document.createElement("i");
+        readLaterIcon.className = "fas fa-book-open ml-2"
         listItem.appendChild(readLaterLink);
         listItem.appendChild(readLaterIcon);
-    } else listItem.appendChild(document.createTextNode(InputTodo));
+        listItem.appendChild(estimation)
+        listItem.appendChild(pin);
+
+    } else {
+        todoName.textContent = InputTodo.todo;
+        listItem.appendChild(todoName);
+        listItem.appendChild(estimation);
+        listItem.appendChild(pin);
+    }
     todo.list.appendChild(listItem);
 }
 
@@ -750,13 +1008,10 @@ function addTodoToStorage(newTodo) {
 function filterTodos(e) {
     const filterValue = e.target.value.toLowerCase();
     const listItems = document.querySelectorAll(".list-group-item");
-    listItems.forEach(function (listItem) {
-        const text = listItem.textContent.toLocaleLowerCase();
-        if (text.indexOf(filterValue) === -1) {
-            listItem.setAttribute("style", "display : none !important");
-        } else {
-            listItem.setAttribute("style", "display : block");
-        }
+    listItems.forEach(listItem => {
+        const text = listItem.children[1].textContent.toLocaleLowerCase()
+        if (text.indexOf(filterValue) === -1) listItem.setAttribute("style", "display : none !important");
+        else listItem.setAttribute("style", "display : block");
     });
 }
 
@@ -764,19 +1019,16 @@ function TodoChecker(sameTodo) {
     let checkTodo = [];
     return getFromStorage("todos")
         .then(todos => {
-            todos.forEach(e => {
-                if (typeof e === 'string') checkTodo.push(e.toLocaleLowerCase());
-                else checkTodo.push(e.name); // typeof e == 'object'
-            });
-            if (typeof sameTodo === 'string' && checkTodo.includes(sameTodo.toLowerCase())) return true;
-            else if (checkTodo.includes(sameTodo.name)) return true; // typeof sameTodo == 'object'
+            todos.forEach(e => checkTodo.push(e.todo));
+            if (checkTodo.includes(sameTodo.todo)) return true;
             return false;
         })
 }
 
 function deletetodo(e) {
     e.target.parentElement.parentElement.remove();
-    deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
+    deleteTodoFromStorage(e.target.parentElement.parentElement.children[1].textContent);
+    proposedTodo(e.target.parentElement.parentElement);
     showAlert("alertInTodo", "success", lang.cpltetd);
 }
 
@@ -784,7 +1036,7 @@ function deleteTodoFromStorage(deteledtodo) {
     getFromStorage("todos")
         .then(todos => {
             todos.forEach((todo, index) => {
-                if (todo === deteledtodo || todo.name === deteledtodo) todos.splice(index, 1);
+                if (todo.todo === deteledtodo) todos.splice(index, 1);
             });
             chrome.storage.local.set({
                 "todos": JSON.stringify(todos)
@@ -807,6 +1059,87 @@ function clearAllTodos() {
         })
 }
 
+function pinTodo(e) {
+    document.querySelectorAll("#todos li i.fas.fa-thumbtack").forEach(p => p.classList.remove("pinned"))
+    e.classList.add("pinned")
+    $("#todos").prepend(e.parentElement);
+    getFromStorage("todos")
+        .then(todos => {
+            todos.forEach((t, i) => {
+                if (t.todo == e.parentElement.children[1].textContent) {
+                    todos.splice(i, 1)
+                    todos.unshift(t)
+                }
+            });
+            chrome.storage.local.set({
+                "todos": JSON.stringify(todos)
+            });
+        })
+
+}
+
+function isHover(e) {
+    return (e.parentElement.querySelector(':hover') === e);
+}
+
+function setDefultTodosOptions() {
+    if (document.activeElement.className != "form-control") {
+        document.querySelector("#estimated-pomodoros").classList.remove("show");
+        document.querySelector("#estimated-pomodoros-bg").classList.remove("show");
+    }
+    todo.estimatedpomodoros.forEach(p => {
+        if (Number(p.getAttribute("value")) > 1) {
+            p.style.color = "";
+            p.classList.remove("selected");
+        }
+    });
+    todo.input.removeAttribute("style");
+    todo.filtercolor.forEach(f => f.removeAttribute("value"));
+    todo.estimatedpomodorosSelect.removeAttribute("style")
+    for (let i = 0; i < 6; i++) todo.estimatedpomodorosSelect.options[i].selected = false;
+}
+
+function filterTagTodos(f) {
+    document.querySelectorAll("#todos li.list-group-item.d-flex").forEach(todo => {
+        if (f == undefined) todo.removeAttribute('style');
+        else if (todo.getAttribute("tag") == f.getAttribute("tag")) todo.removeAttribute('style');
+        else todo.setAttribute('style', 'display:none !important;')
+    });
+}
+
+function proposedTodo(pinned) {
+    let sameTag = []
+    let otherTag = []
+    let score;
+    let averange = 0
+    const todos = document.querySelectorAll("#todos li.list-group-item.d-flex")
+    getFromStorage('pomodoro').then(p => {
+        score = (p.history[Object.keys(p.history)[getTimeNow('day')]] + p.hours[getTimeNow('hour')]) / 2
+        for (h in p.hours) averange += p.hours[h]
+        for (d in p.history) averange += p.history[d]
+        averange /= 31
+        score -= p.allpomodorotimes * .02
+        return
+    }).then(() => {
+        todos.forEach(todo => {
+            if (todo.getAttribute('tag') == pinned.getAttribute('tag')) sameTag.push({
+                'todo': todo,
+                'possibility': score
+            })
+            else otherTag.push({
+                'todo': todo,
+                'possibility': score
+            })
+        });
+        if (sameTag.length === 0) sameTag = otherTag
+        sameTag.forEach(todo => {
+            if (score > averange) todo.possibility += Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
+            else todo.possibility -= Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
+        })
+        sameTag.sort((a, b) => a.possibility - b.possibility)
+        if (sameTag.length > 0) pinTodo(sameTag[sameTag.length - 1].todo.querySelector("i.fas.fa-thumbtack"))
+    })
+}
 /// Google Search
 function googlesearch(e) {
     window.location.replace(`https://www.google.com/search?q=${document.querySelector("#google-search-input").value}`);
@@ -815,6 +1148,7 @@ function googlesearch(e) {
 
 /// Boorkmark
 function loadAllBookmarksToUI() {
+    if (document.querySelectorAll("#bookmarksList div.btn-group").length > 0) document.querySelectorAll("#bookmarksList div.btn-group").forEach(r => r.remove())
     getFromStorage("bookmarks")
         .then(bookmarks => bookmarks.forEach((bookmark, index) => addBookmarkToUI(bookmark.name, bookmark.url, index)))
 }
@@ -1195,19 +1529,32 @@ function setWallpaper(img) {
 /// Other
 function getTimeNow(style) {
     const time = new Date()
-    if (style === "calendar") return `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
-    else if (style === "notification") return `${time.getHours()}${time.getMinutes()}${time.getDate()}${time.getMonth() + 1}${time.getFullYear()}`;
-    else if (style === "day") return time.getDay() - 1;
+    switch (style) {
+        case 'calendar':
+            return `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`
+        case 'notification':
+            return `${time.getHours()}${time.getMinutes()}${time.getDate()}${time.getMonth() + 1}${time.getFullYear()}`
+        case 'day':
+            return time.getDay() - 1
+        case 'hour':
+            return time.getHours()
+    }
 }
 
 function getFromStorage(key) {
-    return new Promise(resolve => {
-        chrome.storage.local.get([key], result => {
-            if (Object.entries(result).length !== 0) result = JSON.parse(result[Object.keys(result)[0]]);
-            else result = [];
-            resolve(result);
+    if (key === 'all') {
+        return new Promise(resolve => {
+            chrome.storage.local.get(result => resolve(result))
         })
-    })
+    } else {
+        return new Promise(resolve => {
+            chrome.storage.local.get([key], result => {
+                if (Object.entries(result).length !== 0) result = JSON.parse(result[Object.keys(result)[0]]);
+                else result = [];
+                resolve(result);
+            })
+        })
+    }
 }
 
 function showAlert(alertid, type, message) {
@@ -1250,3 +1597,65 @@ function smoothWave(distance) {
 function easeOutSine(t, b, c, d) {
     return c * Math.sin(t / d * (Math.PI / 2)) + b;
 };
+
+function recoveryUpdate() {
+    getFromStorage("todos").then(todos => {
+        todos.forEach((todo, i) => {
+            if (typeof todo == 'string') {
+                todos[i] = {
+                    "todo": todo,
+                    "estimation": 1,
+                    "tag": null
+                }
+            } else if (todo.url !== undefined && todo.tag === undefined) {
+                todos[i] = {
+                    "todo": todo.todo,
+                    "url": todo.url,
+                    "estimation": 1,
+                    "tag": null
+                }
+            }
+        })
+        chrome.storage.local.set({
+            "todos": JSON.stringify(todos)
+        });
+    })
+    getFromStorage("pomodoro").then(p => {
+        if (p.hours === undefined) p.hours = {
+            0: 40,
+            1: 40,
+            2: 30,
+            3: 20,
+            4: 30,
+            5: 40,
+            6: 45,
+            7: 75,
+            8: 85,
+            9: 85,
+            10: 85,
+            11: 85,
+            12: 65,
+            13: 65,
+            14: 60,
+            15: 50,
+            16: 65,
+            17: 70,
+            18: 70,
+            19: 60,
+            20: 60,
+            21: 60,
+            22: 60,
+            23: 50,
+        }
+        chrome.storage.local.set({
+            "pomodoro": JSON.stringify(p)
+        });
+    });
+
+    getFromStorage("users").then(users => {
+        if (users.length === 0) users = {}
+        chrome.storage.local.set({
+            "users": JSON.stringify(users)
+        });
+    }); // temporal
+}
