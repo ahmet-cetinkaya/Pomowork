@@ -58,7 +58,6 @@ const setting = {
     upload: document.querySelector("#upload-wallpaper"),
     uploadLabel: document.querySelector("#settings-modal .custom-file-select p"),
     default: document.querySelector("#default-settings"),
-    language: document.querySelector("#language")
 }
 const login = {
     title: document.querySelector("#login-modal > div > div > div.modal-header > h4"),
@@ -73,252 +72,6 @@ const login = {
     newUser: document.querySelector("#login-modal > div > div > div.modal-body > p"),
     btn: document.querySelector("#login-modal > div > div > div.modal-footer > button")
 }
-const lang = {
-    strt: {
-        en: "Start",
-        tr: "Başlat",
-    },
-    brk: {
-        en: "Break",
-        tr: "Mola",
-    },
-    longbrk: {
-        en: "Long Break",
-        tr: "Uzun Mola",
-    },
-    stp: {
-        en: "Stop",
-        tr: "Durdur",
-    },
-    alrt: {
-        fnshpmdr: {
-            en: "Pomodoro Done!|Time is a break time.",
-            tr: "Pomodoro Bitti!|Vakit mola vaktidir."
-        },
-        fnsh4pmdr: {
-            en: "4 Pomodoro Done!|You deserve a long break.",
-            tr: "4 Pomodoro Bitti!|Uzun bir molayı hakk ettin."
-        },
-        fnshbrk: {
-            en: "We're at the end of break. Back to work!",
-            tr: "Molanın sonuna geldik.|İşin başına!"
-        },
-        fnshlgbrk: {
-            en: "We're at the end of long break.|Back to work!",
-            tr: "Uzun olan molanın sonuna geldik.|İşin başına!"
-        }
-    },
-    ttlpmr: {
-        en: "Total Pomodoro: ",
-        tr: "Toplam Pomodoro: ",
-    },
-    entrtds: {
-        en: "Enter A To-do",
-        tr: "Bir Görev Girin",
-    },
-    addtds: {
-        en: "Add To-do",
-        tr: "Görev Ekleyin",
-    },
-    srchtds: {
-        en: "Search A To-do",
-        tr: "Bir Görev Arayın",
-    },
-    cmplttds: {
-        en: "Complete All To-do",
-        tr: "Tüm Görevleri Tamamla",
-    },
-    srch: {
-        en: "Search",
-        tr: "Arama Yapın",
-    },
-    addnt: {
-        en: "Add Note",
-        tr: "Not Ekleyin",
-    },
-    addbkmrktttl: {
-        en: "Add Bookmark",
-        tr: "Yer İmi Ekle",
-    },
-    ttlebkmrk: {
-        en: "Title",
-        tr: "Başlık",
-    },
-    addbkmrk: {
-        en: "Add",
-        tr: "Ekle",
-    },
-    edtbkmrk: {
-        en: "Edit Bookmark",
-        tr: "Yer İmini Düzenle",
-    },
-    dlt: {
-        en: "Delete",
-        tr: "Sil",
-    },
-    edt: {
-        en: "Edit",
-        tr: "Düzenle",
-    },
-    sttngs: {
-        en: "Settings",
-        tr: "Ayarlar",
-    },
-    pmdrtm: {
-        en: "Work Time",
-        tr: "Çalışma Süresi",
-    },
-    pmdrbrk: {
-        en: "Break Time",
-        tr: "Mola Süresi",
-    },
-    pmdrlngbrk: {
-        en: "Long Break Time",
-        tr: "Uzun Mola Süresi",
-    },
-    wllppr: {
-        en: "Wallpaper",
-        tr: "Duvar Kağıdı",
-    },
-    dlywllppr: {
-        en: "Daily Wallpaper",
-        tr: "Günlük Duvar Kağıdı",
-    },
-    dlywllpprct: {
-        en: "Daily Wallpaper Category",
-        tr: "Günlük Duvar Kağıdı Kategorisi",
-    },
-    ctgry: {
-        0: {
-            en: "Nature",
-            tr: "Doğal"
-        },
-        1: {
-            en: "Texture",
-            tr: "Kaplamalar"
-        },
-        2: {
-            en: "Architecture",
-            tr: "Mimari"
-        },
-        3: {
-            en: "Travel",
-            tr: "Yolculuk"
-        },
-        4: {
-            en: "Animals",
-            tr: "Hayvanlar"
-        },
-        5: {
-            en: "Art",
-            tr: "Sanat"
-        },
-        6: {
-            en: "Business",
-            tr: "İş"
-        },
-    },
-    cstmwllppr: {
-        en: "Custom Wallpaper",
-        tr: "Özel Duvar Kağıdı",
-    },
-    cstmwllpprbtn: {
-        en: "Select File",
-        tr: "Dosya Seç",
-    },
-    dflt: {
-        en: "Default",
-        tr: "Varsayılan",
-    },
-    sv: {
-        en: "Save",
-        tr: "Kaydet",
-    },
-    plsentrtodo: {
-        en: "Please enter a to-do.",
-        tr: "Lütfen bir görev girin."
-    },
-    alrdythr: {
-        en: "The to-do is already upon list.",
-        tr: "Görev listede zaten bulunuyor."
-    },
-    nwtdadd: {
-        en: "New to-do added.",
-        tr: "Yeni Görev eklendi."
-    },
-    cpltetd: {
-        en: "To-do is complete.",
-        tr: "Görev Tamamlandı."
-    },
-    nothrtd: {
-        en: "There is nothing on the to-do list.",
-        tr: "Herhangi bir görev bulunmuyor."
-    },
-    rusure: {
-        en: "Are you sure you're all done?",
-        tr: "Tümünü tamamladığından emin misin ?"
-    },
-    cmpldalltd: {
-        en: "All to-do is complete.",
-        tr: "Tüm görevler tamamlandı."
-    },
-    plsentrinpt: {
-        en: "Please fill in the missing fields.",
-        tr: "Lütfen eksik alanları doldurunuz."
-    },
-    addednt: {
-        en: "Note paper has been added.",
-        tr: "Not kağıdı eklendi."
-    },
-    entrnt: {
-        en: "Enter a note.",
-        tr: "Bir Not Girin."
-    },
-    dltdnt: {
-        en: "Note has been deleted.",
-        tr: "Notunuz silindi."
-    },
-    sttngssvd: {
-        en: "Settings have been saved.",
-        tr: "Ayarlar kaydedildi."
-    },
-    rdltr: {
-        en: "Read Later",
-        tr: "Daha Sonra Oku"
-    },
-    avrgpmdr: {
-        en: "Avg. Pomodoro: ",
-        tr: "Ort. Pomodoro: "
-    },
-    days: {
-        en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        tr: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
-    },
-    lgn: {
-        en: "Login",
-        tr: "Giriş"
-    },
-    thrisuser: {
-        en: "Email already registered.",
-        tr: "Eposta zaten kayıtlı."
-    },
-    scssrgstr: {
-        en: "Register is successful.",
-        tr: "Üye olma başarılı."
-    },
-    ntfnduser: {
-        en: "E Mail is not registered.",
-        tr: "E Posta kayıtlı değil."
-    },
-    wrngpss: {
-        en: "Wrong password.",
-        tr: "Şifre yanlış."
-    },
-    sccsslgn: {
-        en: "Signed in",
-        tr: "Giriş yapıldı."
-    }
-} // temporal
 
 /// XMLHttpRequest
 class Request {
@@ -451,43 +204,43 @@ function eventListeners() {
     setting.form.addEventListener("submit", saveSettings);
     setting.default.addEventListener("click", () => setDefaultSettings("save"));
     setting.upload.addEventListener("change", () => setting.uploadLabel.textContent = setting.upload.files[0].name);
-    login.newUser.addEventListener("click", () => {
-        login.name.style.display = 'block'
-        login.nameInpt.required = true;
-        login.newUser.style.display = 'none'
-        login.form.setAttribute('name', 'register')
-        login.btn.textContent = 'Üye ol'
-        login.btn.classList.replace('btn-primary', 'btn-success')
-        login.title.textContent = 'Üye ol'
-    })
-    login.form.addEventListener("submit", loginUser)
-    login.icon.addEventListener("click", () => {
-        getFromStorage('login')
-            .then(r => {
-                if (r[0]) {
-                    document.querySelector("#user-modal > div > div > div.modal-header > h4").textContent = r[1]
-                    $('#user-modal').modal('show');
-                } else $('#login-modal').modal('show');
-            })
-    })
-    document.querySelector("#quit").addEventListener('click', () => {
-        chrome.storage.local.set({
-            'login': JSON.stringify([false])
-        })
-        chrome.storage.local.set({
-            "todos": JSON.stringify([])
-        });
-        chrome.storage.local.set({
-            "notes": JSON.stringify([])
-        });
-        chrome.storage.local.set({
-            "bookmarks": JSON.stringify([])
-        });
-        loadAllTodosToUI();
-        loadAllBookmarksToUI();
-        loadAllNotesToUI();
-        // chrome.storage.local.clear()
-    })
+    // login.newUser.addEventListener("click", () => {
+    //     login.name.style.display = 'block'
+    //     login.nameInpt.required = true;
+    //     login.newUser.style.display = 'none'
+    //     login.form.setAttribute('name', 'register')
+    //     login.btn.textContent = 'Üye ol'
+    //     login.btn.classList.replace('btn-primary', 'btn-success')
+    //     login.title.textContent = 'Üye ol'
+    // })
+    // login.form.addEventListener("submit", loginUser)
+    // login.icon.addEventListener("click", () => {
+    //     getFromStorage('login')
+    //         .then(r => {
+    //             if (r[0]) {
+    //                 document.querySelector("#user-modal > div > div > div.modal-header > h4").textContent = r[1]
+    //                 $('#user-modal').modal('show');
+    //             } else $('#login-modal').modal('show');
+    //         })
+    // })
+    // document.querySelector("#quit").addEventListener('click', () => {
+    //     chrome.storage.local.set({
+    //         'login': JSON.stringify([false])
+    //     })
+    //     chrome.storage.local.set({
+    //         "todos": JSON.stringify([])
+    //     });
+    //     chrome.storage.local.set({
+    //         "notes": JSON.stringify([])
+    //     });
+    //     chrome.storage.local.set({
+    //         "bookmarks": JSON.stringify([])
+    //     });
+    //     loadAllTodosToUI();
+    //     loadAllBookmarksToUI();
+    //     loadAllNotesToUI();
+    //     // chrome.storage.local.clear()
+    // })
 };
 
 function loginUser(e) {
@@ -520,9 +273,9 @@ function loginUser(e) {
                         loadAllTodosToUI();
                         loadAllBookmarksToUI();
                         loadAllNotesToUI();
-                        showAlert("alertSettings", "success", lang.sccsslgn)
-                    } else showAlert("alertInLogin", "danger", lang.wrngpss)
-                } else showAlert("alertInLogin", "danger", lang.ntfnduser)
+                        showAlert("alertSettings", "success", "sccsslgn")
+                    } else showAlert("alertInLogin", "danger", "wrngpss")
+                } else showAlert("alertInLogin", "danger", "ntfnduser")
             } else {
                 if (users[login.mailInpt.value.trim()] == undefined) {
                     let storage = await getFromStorage('all')
@@ -537,47 +290,47 @@ function loginUser(e) {
                     chrome.storage.local.set({
                         "users": JSON.stringify(users)
                     });
-                    showAlert("alertInLogin", "success", lang.scssrgstr)
+                    chrome.storage.local.set({
+                        "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
+                    });
+                    showAlert("alertInLogin", "success", "scssrgstr")
                     setTimeout(() => {
                         $('#login-modal').modal('hide');
                     }, 1000);
-                } else showAlert("alertInLogin", "danger", lang.thrisuser)
+                } else showAlert("alertInLogin", "danger", "thrisuser")
             }
         });
 }
 /// Pomodoro
 
-var notifications;
 
 function loadExtension() {
-    getFromStorage("settings")
-        .then(settings => {
             chrome.contextMenus.removeAll(() => {
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "pomodoro",
-                    title: eval(`lang.strt.${settings.language}`),
+                    title: chrome.i18n.getMessage('strt'),
                     contexts: ["browser_action"],
                     onclick: () => pomodoroTime("toggle")
                 });
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "break",
-                    title: eval(`lang.brk.${settings.language}`),
+                    title: chrome.i18n.getMessage('brk'),
                     contexts: ["browser_action"],
                     onclick: () => pomodoroTime("break")
                 });
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "longbreak",
-                    title: eval(`lang.longbrk.${settings.language}`),
+                    title: chrome.i18n.getMessage('longbrk'),
                     contexts: ["browser_action"],
                     onclick: () => pomodoroTime("longbreak")
                 });
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "readlater",
-                    title: eval(`lang.rdltr.${settings.language}`),
+                    title: chrome.i18n.getMessage('rdltr'),
                     contexts: ["page"],
                     onclick: () => {
                         chrome.tabs.query({
@@ -596,49 +349,18 @@ function loadExtension() {
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "addtodo",
-                    title: eval(`lang.addtds.${settings.language}`),
+                    title: chrome.i18n.getMessage('addtds'),
                     contexts: ["selection"],
                     onclick: (todo) => addTodo(todo.selectionText)
                 });
                 chrome.contextMenus.create({
                     type: "normal",
                     id: "addnote",
-                    title: eval(`lang.addnt.${settings.language}`),
+                    title: chrome.i18n.getMessage('addnt'),
                     contexts: ["selection"],
                     onclick: (note) => addNoteToStorage(note.selectionText)
                 });
             });
-            notifications = {
-                fnshpmdr: {
-                    type: 'basic',
-                    iconUrl: '/images/soup.png',
-                    title: eval(`lang.alrt.fnshpmdr.${settings.language}.split("|")[0]`),
-                    message: eval(`lang.alrt.fnshpmdr.${settings.language}.split("|")[1]`),
-                    contextMessage: 'Pomowork',
-                },
-                fnsh4pmdr: {
-                    type: 'basic',
-                    iconUrl: '/images/star.png',
-                    title: eval(`lang.alrt.fnsh4pmdr.${settings.language}.split("|")[0]`),
-                    message: eval(`lang.alrt.fnsh4pmdr.${settings.language}.split("|")[1]`),
-                    contextMessage: 'Pomowork',
-                },
-                fnshbrk: {
-                    type: 'basic',
-                    iconUrl: '/images/tomato.png',
-                    title: eval(`lang.alrt.fnshbrk.${settings.language}.split("|")[0]`),
-                    message: eval(`lang.alrt.fnshbrk.${settings.language}.split("|")[1]`),
-                    contextMessage: 'Pomowork',
-                },
-                fnshlgbrk: {
-                    type: 'basic',
-                    iconUrl: '/images/tomato.png',
-                    title: eval(`lang.alrt.fnshlgbrk.${settings.language}.split("|")[0]`),
-                    message: eval(`lang.alrt.fnshlgbrk.${settings.language}.split("|")[1]`),
-                    contextMessage: 'Pomowork',
-                },
-            };
-        });
 
     getFromStorage("pomodoro")
         .then(pomodoro => {
@@ -747,7 +469,7 @@ chrome.alarms.onAlarm.addListener(() => {
             smoothWave(235 - (235 * (p.countdowntime / p.countdowntimepercent)))
             if (!p.countdowntime) {
                 sounds.pomodoro.play();
-                smoothWave(-252);
+                setTimeout(() =>smoothWave(-252), 1000);
                 if (p.timeprocess === "focus") {
                     p.allpomodorotimes++;
                     p.pomodorotimes++;
@@ -767,19 +489,43 @@ chrome.alarms.onAlarm.addListener(() => {
                     p.hours[getTimeNow('hour')] += .2;
                     if (p.pomodorotimes / 4 !== 1) {
                         pomodoroTime("break");
-                        chrome.notifications.create(getTimeNow("notification"), notifications.fnshpmdr);
+                        chrome.notifications.create(getTimeNow("notification"), { //+ use String((new Date).getTime()) in background module
+                            iconUrl: './images/soup.png',
+                            type: 'basic',
+                            title: chrome.i18n.getMessage('fnshpmdr').split("|")[0],
+                            message: chrome.i18n.getMessage('fnshpmdr').split("|")[1],
+                            contextMessage: 'Pomowork',
+                        });
                     } else {
                         pomodoroTime("longbreak");
-                        chrome.notifications.create(getTimeNow("notification"), notifications.fnsh4pmdr);
+                        chrome.notifications.create(getTimeNow("notification"), {
+                            iconUrl: './images/star.png',
+                            type: 'basic',
+                            title: chrome.i18n.getMessage('fnsh4pmdr').split("|")[0],
+                            message: chrome.i18n.getMessage('fnsh4pmdr').split("|")[1],
+                            contextMessage: 'Pomowork',
+                        });
                     }
                 } else if (p.timeprocess === "break") {
                     pomodoroTime("focus");
-                    chrome.notifications.create(getTimeNow("notification"), notifications.fnshbrk);
+                    chrome.notifications.create(getTimeNow("notification"), {
+                        iconUrl: './images/tomato.png',
+                        type: 'basic',
+                        title: chrome.i18n.getMessage('fnshbrk').split("|")[0],
+                        message: chrome.i18n.getMessage('fnshbrk').split("|")[1],
+                        contextMessage: 'Pomowork',
+                    });
                 } else if (p.timeprocess === "longbreak") {
                     p.pomodorotimes = 0;
                     pomodoro.longbreak.innerText = p.pomodorotimes;
                     pomodoroTime("focus");
-                    chrome.notifications.create(getTimeNow("notification"), notifications.fnshlgbrk);
+                    chrome.notifications.create(getTimeNow("notification"), {
+                        iconUrl: './images/tomato.png',
+                        type: 'basic',
+                        title: chrome.i18n.getMessage('fnshlgbrk').split("|")[0],
+                        message: chrome.i18n.getMessage('fnshlgbrk').split("|")[1],
+                        contextMessage: 'Pomowork',
+                    });
                 }
             }
             chrome.storage.local.set({
@@ -787,6 +533,38 @@ chrome.alarms.onAlarm.addListener(() => {
             });
         })
 });
+
+const notifications = {
+    fnshpmdr: {
+        iconUrl: './images/soup.png',
+        type: 'basic',
+        title: chrome.i18n.getMessage('fnshpmdr').split("|")[0],
+        message: chrome.i18n.getMessage('fnshpmdr').split("|")[1],
+        contextMessage: 'Pomowork',
+    },
+    fnsh4pmdr: {
+        iconUrl: './images/star.png',
+        type: 'basic',
+        title: chrome.i18n.getMessage('fnsh4pmdr').split("|")[0],
+        message: chrome.i18n.getMessage('fnsh4pmdr').split("|")[1],
+        contextMessage: 'Pomowork',
+    },
+    fnshbrk: {
+        iconUrl: './images/tomato.png',
+        type: 'basic',
+        title: chrome.i18n.getMessage('fnshbrk').split("|")[0],
+        message: chrome.i18n.getMessage('fnshbrk').split("|")[1],
+        contextMessage: 'Pomowork',
+    },
+    fnshlgbrk: {
+        iconUrl: './images/tomato.png',
+        type: 'basic',
+        title: chrome.i18n.getMessage('fnshlgbrk').split("|")[0],
+        message: chrome.i18n.getMessage('fnshlgbrk').split("|")[1],
+        contextMessage: 'Pomowork',
+    }
+};
+
 
 var badgeColor = [220, 53, 69, 1];
 
@@ -817,24 +595,24 @@ function checkAlarm(callback) {
                         var newLabel;
                         var newClass;
                         if (hasAlarm) { // alarm on
-                            newLabel = eval(`lang.stp.${settings.language}`);
+                            newLabel = chrome.i18n.getMessage('stp');
                             newClass = "btn btn-danger";
                             pomodoro.minutes.innerText = p.countdowntime;
                             pomodoro.emj.src = p.emj;
                             pomodoro.water.style.height = `${235 - (235 * (p.countdowntime / p.countdowntimepercent))}px`;
                             setBadge(`${p.countdowntime}`, `${p.timeprocess}`);
                             chrome.contextMenus.update('pomodoro', {
-                                title: eval(`lang.stp.${settings.language}`)
+                                title: chrome.i18n.getMessage('stp')
                             });
                         } else { // alarm off
-                            newLabel = eval(`lang.strt.${settings.language}`);
+                            newLabel = chrome.i18n.getMessage('strt');
                             newClass = "btn btn-success";
                             pomodoro.minutes.innerText = settings.start;
                             pomodoro.emj.src = "";
                             setTimeout(() => smoothWave(-252), 1100);
                             setBadge("", "focus");
                             chrome.contextMenus.update('pomodoro', {
-                                title: eval(`lang.strt.${settings.language}`)
+                                title: chrome.i18n.getMessage('strt')
                             });
                         }
                         pomodoro.startbutton.textContent = newLabel;
@@ -931,14 +709,14 @@ function addTodo(e) {
         estimation: 1,
         tag: tag
     }
-    if (e.type === 'submit' && newTodo.todo == "") showAlert("alertInTodo", "danger", lang.plsentrtodo)
+    if (e.type === 'submit' && newTodo.todo == "") showAlert("alertInTodo", "danger", "plsentrtodo")
     else {
         TodoChecker(newTodo).then(check => {
-            if (check) showAlert("alertInTodo", "danger", lang.alrdythr)
+            if (check) showAlert("alertInTodo", "danger", "alrdythr")
             else {
                 addTodoToUI(newTodo);
                 addTodoToStorage(newTodo);
-                showAlert("alertInTodo", "warning", lang.nwtdadd);
+                showAlert("alertInTodo", "warning", "nwtdadd");
             }
             setDefultTodosOptions();
         })
@@ -947,11 +725,11 @@ function addTodo(e) {
 
 function addReadLater(page) {
     TodoChecker(page).then(check => {
-        if (check) showAlert("alertInTodo", "danger", lang.alrdythr)
+        if (check) showAlert("alertInTodo", "danger", "alrdythr")
         else {
             addTodoToUI(page);
             addTodoToStorage(page);
-            showAlert("alertInTodo", "warning", lang.nwtdadd);
+            showAlert("alertInTodo", "warning", "nwtdadd");
         }
     })
 }
@@ -1029,7 +807,7 @@ function deletetodo(e) {
     e.target.parentElement.parentElement.remove();
     deleteTodoFromStorage(e.target.parentElement.parentElement.children[1].textContent);
     proposedTodo(e.target.parentElement.parentElement);
-    showAlert("alertInTodo", "success", lang.cpltetd);
+    showAlert("alertInTodo", "success", "cpltetd");
 }
 
 function deleteTodoFromStorage(deteledtodo) {
@@ -1048,13 +826,13 @@ function clearAllTodos() {
     getFromStorage("settings")
         .then(settings => {
             if (todo.list.firstElementChild === null) {
-                showAlert("alertInTodo", "danger", lang.nothrtd)
-            } else if (confirm(eval(`lang.rusure.${settings.language}`))) {
+                showAlert("alertInTodo", "danger", "nothrtd")
+            } else if (confirm(chrome.i18n.getMessage('rusure'))) {
                 while (todo.list.firstElementChild != null) { // delete UI
                     todo.list.removeChild(todo.list.firstElementChild);
                 }
                 chrome.storage.local.remove("todos")
-                showAlert("alertInTodo", "success", lang.cmpldalltd)
+                showAlert("alertInTodo", "success", "cmpldalltd")
             }
         })
 }
@@ -1125,19 +903,23 @@ function proposedTodo(pinned) {
             if (todo.getAttribute('tag') == pinned.getAttribute('tag')) sameTag.push({
                 'todo': todo,
                 'possibility': score
-            })
+            });
             else otherTag.push({
                 'todo': todo,
                 'possibility': score
-            })
+            });
         });
-        if (sameTag.length === 0) sameTag = otherTag
+        if (sameTag.length === 0) sameTag = otherTag;
         sameTag.forEach(todo => {
             if (score > averange) todo.possibility += Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
             else todo.possibility -= Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
-        })
-        sameTag.sort((a, b) => a.possibility - b.possibility)
-        if (sameTag.length > 0) pinTodo(sameTag[sameTag.length - 1].todo.querySelector("i.fas.fa-thumbtack"))
+        });
+        console.log(`!: score`, score)
+        console.log(`!: averange`, averange)
+        console.log(`!: sameTag`, sameTag)
+        let highProbability = sameTag.find(o => o.possibility == Math.max.apply(Math, sameTag.map(t => t.possibility)))
+        console.log(`!: highProbability`, highProbability)
+        if (sameTag.length > 0) pinTodo(highProbability.todo.querySelector("i.fas.fa-thumbtack"));
     })
 }
 /// Google Search
@@ -1166,7 +948,7 @@ function addBookmark(e) {
                 addBookmarkToStorage(newurlname, newurl);
             });
     } else {
-        showAlert("alertInBookmark", "danger", lang.plsentrinpt);
+        showAlert("alertInBookmark", "danger", "plsentrinpt");
     }
     urlnameInput.value = "";
     urlInput.value = "";
@@ -1292,7 +1074,7 @@ function loadAllNotesToUI() {
 function addNote(e) {
     addNoteToUI();
     addNoteToStorage();
-    showAlert("alertInNotes", "success", lang.addednt);
+    showAlert("alertInNotes", "success", "addednt");
     e.preventDefault()
 }
 
@@ -1303,10 +1085,7 @@ function addNoteToUI(e) {
     newnotearena.id = notetextarena.length;
     newnotearena.className = "alert alert-warning col";
     newnotearena.setAttribute("spellcheck", "false");
-    getFromStorage("settings")
-        .then(settings => {
-            newnotearena.placeholder = eval(`lang.entrnt.${settings.language}`);
-        })
+            newnotearena.placeholder = chrome.i18n.getMessage('entrnt');
     notetwocol.className = "w-100";
     if (e != undefined) {
         newnotearena.appendChild(document.createTextNode(e));
@@ -1329,7 +1108,7 @@ function addNoteToStorage(e) {
                 "notes": JSON.stringify(notes)
             })
             if (typeof e === 'string') {
-                showAlert("alertInNotes", "success", lang.addednt);
+                showAlert("alertInNotes", "success", "addednt");
                 loadAllNotesToUI();
             }
         })
@@ -1342,7 +1121,7 @@ function isEven(value) {
 
 function deletenote(e) {
     e.target.remove();
-    showAlert("alertInNotes", "danger", lang.dltdnt);
+    showAlert("alertInNotes", "danger", "dltdnt");
     deleteNoteFromStorage(e.target.id)
 }
 
@@ -1358,47 +1137,29 @@ function deleteNoteFromStorage(index) {
 }
 
 /// Settings
-function loadLangToUI() {
+function loadLangToUI            () {
     getFromStorage("settings")
         .then(settings => {
             document.querySelectorAll("button").forEach(btn => {
-                if (btn.getAttribute("lang")) {
-                    btn.textContent = eval(`lang.${btn.getAttribute("lang")}.${settings.language}`)
-                }
+                if (btn.getAttribute("lang")) btn.textContent = chrome.i18n.getMessage(`${btn.getAttribute("lang")}`)
             })
             document.querySelectorAll("h4").forEach(ttl => {
-                if (ttl.getAttribute("lang")) {
-                    ttl.textContent = eval(`lang.${ttl.getAttribute("lang")}.${settings.language}`)
-                }
+                if (ttl.getAttribute("lang")) ttl.textContent = chrome.i18n.getMessage(`${ttl.getAttribute("lang")}`)
+
             })
             document.querySelectorAll("input").forEach(inpt => {
-                if (inpt.getAttribute("lang")) {
-                    inpt.placeholder = eval(`lang.${inpt.getAttribute("lang")}.${settings.language}`)
-                }
+                if (inpt.getAttribute("lang")) inpt.placeholder = chrome.i18n.getMessage(`${inpt.getAttribute("lang")}`)
             })
             document.querySelectorAll("p").forEach(p => {
-                if (p.getAttribute("lang")) {
-                    p.textContent = eval(`lang.${p.getAttribute("lang")}.${settings.language}`)
-                }
+                if (p.getAttribute("lang")) p.textContent = chrome.i18n.getMessage(`${p.getAttribute("lang")}`)
             })
             const a = [...setting.category.options];
             a.forEach(optns => {
-                if (optns.getAttribute("lang")) {
-                    optns.textContent = eval(`lang.${optns.getAttribute("lang")}.${settings.language}`)
-                }
+                if (optns.getAttribute("lang")) optns.textContent = chrome.i18n.getMessage(`${optns.getAttribute("lang")}`)
             });
             pomodoro.minutes.innerText = settings.start;
-            pomodoro.graphs.forEach(g => g.setAttribute("data-content", eval(`lang.avrgpmdr.${settings.language}`)));
-            pomodoro.dayname.forEach((n, i) => {
-                n.textContent = eval(`lang.days.${settings.language}[i]`)
-            })
+            pomodoro.graphs.forEach(g => g.setAttribute("data-content", chrome.i18n.getMessage("avrgpmdr")));
         })
-}
-
-function getBrowserLang() {
-    let lang = (navigator.language || navigator.userLanguage)
-    if (lang === "tr") return lang;
-    else return "en"
 }
 
 function setDefaultSettings(process) {
@@ -1410,7 +1171,6 @@ function setDefaultSettings(process) {
         daily: true,
         day: getTimeNow("calendar"),
         category: "nature",
-        language: getBrowserLang()
     }
     getFromStorage("settings")
         .then(settings => {
@@ -1426,7 +1186,7 @@ function setDefaultSettings(process) {
                 chrome.storage.local.set({
                     "settings": JSON.stringify(defaultsettings)
                 });
-                showAlert("alertSettings", "success", lang.sttngssvd);
+                showAlert("alertSettings", "success", "sttngssvd");
             }
             loadLangToUI();
             setTimeout(() => setWallpaper(settings.wallpaper), 10);
@@ -1446,13 +1206,8 @@ function editSettings() {
                 }
             });
             setting.upload.value = "";
-            setting.uploadLabel.textContent = eval(`lang.${setting.uploadLabel.getAttribute("lang")}.${settings.language}`);
+            setting.uploadLabel.textContent = chrome.i18n.getMessage('cstmwllpprbtn');
             setting.custom.value = "";
-            Object.keys(setting.language.options).forEach(e => {
-                if (settings.language == setting.language.options[e].value) {
-                    setting.language.selectedIndex = e;
-                }
-            })
         })
 }
 
@@ -1469,14 +1224,13 @@ function saveSettings(e) {
             reader.onloadend = () => setWallpaper(reader.result);
             if (file) reader.readAsDataURL(file);
             if (!!setting.custom.value) setWallpaper(setting.custom.value);
-            if (settings.language != setting.language.value) settings.language = setting.language.value;
             chrome.storage.local.set({
                 "settings": JSON.stringify(settings)
             });
             loadLangToUI();
             checkAlarm();
             dailyControl("save");
-            showAlert("alertSettings", "success", lang.sttngssvd);
+            showAlert("alertSettings", "success", "sttngssvd");
             loadExtension();
         })
     e.preventDefault();
@@ -1558,25 +1312,22 @@ function getFromStorage(key) {
 }
 
 function showAlert(alertid, type, message) {
-    getFromStorage("settings")
-        .then(settings => {
-            if (type === "danger") {
-                sounds.danger.play();
-            } else {
-                sounds.warning.play();
+
+    if (!document.documentElement.clientWidth){ // only extension browser action button //+ background module
+if (type === "danger") sounds.danger.play();
+else sounds.warning.play();     
             }
             let alert = document.querySelector(`#${alertid}`);
             let notice = document.createElement("div");
             notice.className = `btn btn-${type} fade show`;
-            notice.textContent = eval(`message.${settings.language}`);
-            alert.appendChild(notice)
+            notice.textContent = chrome.i18n.getMessage(`${message}`);
+            alert.appendChild(notice);
             setTimeout(function () {
                 notice.className = `btn btn-${type} fade`;
             }, 2000);
             setTimeout(function () {
                 alert.firstChild.remove();
             }, 2150);
-        })
 }
 
 function smoothWave(distance) {
@@ -1609,7 +1360,7 @@ function recoveryUpdate() {
                 }
             } else if (todo.url !== undefined && todo.tag === undefined) {
                 todos[i] = {
-                    "todo": todo.todo,
+                    "todo": todo.name,
                     "url": todo.url,
                     "estimation": 1,
                     "tag": null

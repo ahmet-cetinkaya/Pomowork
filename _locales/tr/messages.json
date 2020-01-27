@@ -1,0 +1,274 @@
+{
+  "appName": {
+    "message": "Pomowork - Pomodoro® ve Görev Asistanı",
+    "description": "Pomowork - Pomodoro® and Todo Assistant"
+  },
+  "appDesc": {
+    "message": "Ana sayfanızda çalışmalarına yönelik bir asistan belirir.",
+    "description": "Changes the home page to suit your work."
+  },
+  "strt": {
+    "message": "Başlat",
+    "description": "Start"
+  },
+  "brk": {
+    "message": "Mola",
+    "description": "Break"
+  },
+  "longbrk": {
+    "message": "Uzun Mola",
+    "description": "Long Break"
+  },
+  "stp": {
+    "message": "Durdur",
+    "description": "Stop"
+  },
+  "fnshpmdr": {
+    "message": "Pomodoro Bitti!|Vakit mola vaktidir.",
+    "description": "Pomodoro Done!|Time is a break time."
+  },
+  "fnsh4pmdr": {
+    "message": "4 Pomodoro Bitti!|Uzun bir molayı hakk ettin.",
+    "description": "4 Pomodoro Done!|You deserve a long break."
+  },
+  "fnshbrk": {
+    "message": "Molanın sonuna geldik.|İşin başına!",
+    "description": "We're at the end of break. Back to work!"
+  },
+  "fnshlgbrk": {
+    "message": "Uzun olan molanın sonuna geldik.|İşin başına!",
+    "description": "We're at the end of long break.|Back to work!"
+  },
+  "ttlpmr": {
+    "message": "Toplam Pomodoro: ",
+    "description": "Total Pomodoro: "
+  },
+  "entrtds": {
+    "message": "Bir Görev Girin",
+    "description": "Enter A To-do"
+  },
+  "addtds": {
+    "message": "Görev Ekleyin",
+    "description": "Add To-do"
+  },
+  "srchtds": {
+    "message": "Bir Görev Arayın",
+    "description": "Search A To-do"
+  },
+  "cmplttds": {
+    "message": "Tüm Görevleri Tamamla",
+    "description": "Complete All To-do"
+  },
+  "srch": {
+    "message": "Arama Yapın",
+    "description": "Search"
+  },
+  "addnt": {
+    "message": "Not Ekleyin",
+    "description": "Add Note"
+  },
+  "addbkmrktttl": {
+    "message": "Yer İmi Ekle",
+    "description": "Add Bookmark"
+  },
+  "ttlebkmrk": {
+    "message": "Başlık",
+    "description": "Title"
+  },
+  "addbkmrk": {
+    "message": "Ekle",
+    "description": "Add"
+  },
+  "edtbkmrk": {
+    "message": "Yer İmini Düzenle",
+    "description": "Edit Bookmark"
+  },
+  "dlt": {
+    "message": "Sil",
+    "description": "Delete"
+  },
+  "edt": {
+    "message": "Düzenle",
+    "description": "Edit"
+  },
+  "sttngs": {
+    "message": "Ayarlar",
+    "description": "Settings"
+  },
+  "pmdrtm": {
+    "message": "Çalışma Süresi",
+    "description": "Work Time"
+  },
+  "pmdrbrk": {
+    "message": "Mola Süresi",
+    "description": "Break Time"
+  },
+  "pmdrlngbrk": {
+    "message": "Uzun Mola Süresi",
+    "description": "Long Break Time"
+  },
+  "wllppr": {
+    "message": "Duvar Kağıdı",
+    "description": "Wallpaper"
+  },
+  "dlywllppr": {
+    "message": "Günlük Duvar Kağıdı",
+    "description": "Daily Wallpaper"
+  },
+  "dlywllpprct": {
+    "message": "Günlük Duvar Kağıdı Kategorisi",
+    "description": "Daily Wallpaper Category"
+  },
+  "nature": {
+    "message": "Doğal",
+    "description": "Nature"
+  },
+  "texture": {
+    "message": "Kaplamalar",
+    "description": "Texture"
+  },
+  "arch": {
+    "message": "Mimari",
+    "description": "Architecture"
+  },
+  "travel": {
+    "message": "Yolculuk",
+    "description": "Travel"
+  },
+  "animals": {
+    "message": "Hayvanlar",
+    "description": "Animals"
+  },
+  "art": {
+    "message": "Sanat",
+    "description": "Art"
+  },
+  "business": {
+    "message": "İş",
+    "description": "Business"
+  },
+  "cstmwllppr": {
+    "message": "Özel Duvar Kağıdı",
+    "description": "Custom Wallpaper"
+  },
+  "cstmwllpprbtn": {
+    "message": "Dosya Seç",
+    "description": "Select File"
+  },
+  "dflt": {
+    "message": "Varsayılan",
+    "description": "Default"
+  },
+  "sv": {
+    "message": "Kaydet",
+    "description": "Save"
+  },
+  "plsentrtodo": {
+    "message": "Lütfen bir görev girin.",
+    "description": "Please enter a todo."
+  },
+  "alrdythr": {
+    "message": "Görev listede zaten bulunuyor.",
+    "description": "The todo is already upon list."
+  },
+  "nwtdadd": {
+    "message": "Yeni Görev eklendi.",
+    "description": "New todo added."
+  },
+  "cpltetd": {
+    "message": "Görev Tamamlandı.",
+    "description": "To-do is complete."
+  },
+  "nothrtd": {
+    "message": "Herhangi bir görev bulunmuyor.",
+    "description": "There is nothing on the todo list."
+  },
+  "rusure": {
+    "message": "Tümünü tamamladığından emin misin ?",
+    "description": "Are you sure you're all done?"
+  },
+  "cmpldalltd": {
+    "message": "Tüm görevler tamamlandı.",
+    "description": "All todo is complete."
+  },
+  "plsentrinpt": {
+    "message": "Lütfen eksik alanları doldurunuz.",
+    "description": "Please fill in the missing fields."
+  },
+  "addednt": {
+    "message": "Not kağıdı eklendi.",
+    "description": "Note paper has been added."
+  },
+  "entrnt": {
+    "message": "Bir Not Girin.",
+    "description": "Enter a note."
+  },
+  "dltdnt": {
+    "message": "Notunuz silindi.",
+    "description": "Note has been deleted."
+  },
+  "sttngssvd": {
+    "message": "Ayarlar kaydedildi.",
+    "description": "Settings have been saved."
+  },
+  "rdltr": {
+    "message": "Daha Sonra Oku",
+    "description": "Read Later"
+  },
+  "avrgpmdr": {
+    "message": "Ort. Pomodoro: ",
+    "description": "Avg. Pomodoro: "
+  },
+  "mon": {
+    "message": "Pzt",
+    "description": "Mon"
+  },
+  "tue": {
+    "message": "Sal",
+    "description": "Tue"
+  },
+  "wed": {
+    "message": "Çar",
+    "description": "Wed"
+  },
+  "thu": {
+    "message": "Per",
+    "description": "Thu"
+  },
+  "fri": {
+    "message": "Cum",
+    "description": "Fri"
+  },
+  "sat": {
+    "message": "Cmt",
+    "description": "Sat"
+  },
+  "sun": {
+    "message": "Paz",
+    "description": "Sun"
+  },
+  "lgn": {
+    "message": "Giriş",
+    "description": "Login"
+  },
+  "thrisuser": {
+    "message": "Eposta zaten kayıtlı.",
+    "description": "Email already registered."
+  },
+  "scssrgstr": {
+    "message": "Üye olma başarılı.",
+    "description": "Register is successful."
+  },
+  "ntfnduser": {
+    "message": "Eposta kayıtlı değil.",
+    "description": "Email is not registered."
+  },
+  "wrngpss": {
+    "message": "Şifre yanlış.",
+    "description": "Wrong password."
+  },
+  "sccsslgn": {
+    "message": "Giriş yapıldı.",
+    "description": "Signed in."
+  }
+}

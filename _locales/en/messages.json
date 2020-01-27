@@ -1,0 +1,274 @@
+{
+  "appName": {
+    "message": "Pomowork - Pomodoro® and Todo Assistant",
+    "description": "Pomowork - Pomodoro® and Todo Assistant"
+  },
+  "appDesc": {
+    "message": "An assistant for their work appears on your homepage.",
+    "description": "An assistant for their work appears on your homepage."
+  },
+  "strt": {
+    "message": "Start",
+    "description": "Start"
+  },
+  "brk": {
+    "message": "Break",
+    "description": "Break"
+  },
+  "longbrk": {
+    "message": "Long Break",
+    "description": "Long Break"
+  },
+  "stp": {
+    "message": "Stop",
+    "description": "Stop"
+  },
+  "fnshpmdr": {
+    "message": "Pomodoro Done!|Time is a break time.",
+    "description": "Pomodoro Done!|Time is a break time."
+  },
+  "fnsh4pmdr": {
+    "message": "4 Pomodoro Done!|You deserve a long break.",
+    "description": "4 Pomodoro Done!|You deserve a long break."
+  },
+  "fnshbrk": {
+    "message": "We're at the end of break. Back to work!",
+    "description": "We're at the end of break. Back to work!"
+  },
+  "fnshlgbrk": {
+    "message": "We're at the end of long break.|Back to work!",
+    "description": "We're at the end of long break.|Back to work!"
+  },
+  "ttlpmr": {
+    "message": "Total Pomodoro: ",
+    "description": "Total Pomodoro: "
+  },
+  "entrtds": {
+    "message": "Enter A To-do",
+    "description": "Enter A To-do"
+  },
+  "addtds": {
+    "message": "Add To-do",
+    "description": "Add To-do"
+  },
+  "srchtds": {
+    "message": "Search A To-do",
+    "description": "Search A To-do"
+  },
+  "cmplttds": {
+    "message": "Complete All To-do",
+    "description": "Complete All To-do"
+  },
+  "srch": {
+    "message": "Search",
+    "description": "Search"
+  },
+  "addnt": {
+    "message": "Add Note",
+    "description": "Add Note"
+  },
+  "addbkmrktttl": {
+    "message": "Add Bookmark",
+    "description": "Add Bookmark"
+  },
+  "ttlebkmrk": {
+    "message": "Title",
+    "description": "Title"
+  },
+  "addbkmrk": {
+    "message": "Add",
+    "description": "Add"
+  },
+  "edtbkmrk": {
+    "message": "Edit Bookmark",
+    "description": "Edit Bookmark"
+  },
+  "dlt": {
+    "message": "Delete",
+    "description": "Delete"
+  },
+  "edt": {
+    "message": "Edit",
+    "description": "Edit"
+  },
+  "sttngs": {
+    "message": "Settings",
+    "description": "Settings"
+  },
+  "pmdrtm": {
+    "message": "Work Time",
+    "description": "Work Time"
+  },
+  "pmdrbrk": {
+    "message": "Break Time",
+    "description": "Break Time"
+  },
+  "pmdrlngbrk": {
+    "message": "Long Break Time",
+    "description": "Long Break Time"
+  },
+  "wllppr": {
+    "message": "Wallpaper",
+    "description": "Wallpaper"
+  },
+  "dlywllppr": {
+    "message": "Daily Wallpaper",
+    "description": "Daily Wallpaper"
+  },
+  "dlywllpprct": {
+    "message": "Daily Wallpaper Category",
+    "description": "Daily Wallpaper Category"
+  },
+  "nature": {
+    "message": "Nature",
+    "description": "Nature"
+  },
+  "texture": {
+    "message": "Texture",
+    "description": "Texture"
+  },
+  "arch": {
+    "message": "Architecture",
+    "description": "Architecture"
+  },
+  "travel": {
+    "message": "Travel",
+    "description": "Travel"
+  },
+  "animals": {
+    "message": "Animals",
+    "description": "Animals"
+  },
+  "art": {
+    "message": "Art",
+    "description": "Art"
+  },
+  "business": {
+    "message": "Business",
+    "description": "Business"
+  },
+  "cstmwllppr": {
+    "message": "Custom Wallpaper",
+    "description": "Custom Wallpaper"
+  },
+  "cstmwllpprbtn": {
+    "message": "Select File",
+    "description": "Select File"
+  },
+  "dflt": {
+    "message": "Default",
+    "description": "Default"
+  },
+  "sv": {
+    "message": "Save",
+    "description": "Save"
+  },
+  "plsentrtodo": {
+    "message": "Please enter a todo.",
+    "description": "Please enter a todo."
+  },
+  "alrdythr": {
+    "message": "The todo is already upon list.",
+    "description": "The todo is already upon list."
+  },
+  "nwtdadd": {
+    "message": "New todo added.",
+    "description": "New todo added."
+  },
+  "cpltetd": {
+    "message": "To-do is complete.",
+    "description": "To-do is complete."
+  },
+  "nothrtd": {
+    "message": "There is nothing on the todo list.",
+    "description": "There is nothing on the todo list."
+  },
+  "rusure": {
+    "message": "Are you sure you're all done?",
+    "description": "Are you sure you're all done?"
+  },
+  "cmpldalltd": {
+    "message": "All todo is complete.",
+    "description": "All todo is complete."
+  },
+  "plsentrinpt": {
+    "message": "Please fill in the missing fields.",
+    "description": "Please fill in the missing fields."
+  },
+  "addednt": {
+    "message": "Note paper has been added.",
+    "description": "Note paper has been added."
+  },
+  "entrnt": {
+    "message": "Enter a note.",
+    "description": "Enter a note."
+  },
+  "dltdnt": {
+    "message": "Note has been deleted.",
+    "description": "Note has been deleted."
+  },
+  "sttngssvd": {
+    "message": "Settings have been saved.",
+    "description": "Settings have been saved."
+  },
+  "rdltr": {
+    "message": "Read Later",
+    "description": "Read Later"
+  },
+  "avrgpmdr": {
+    "message": "Avg. Pomodoro: ",
+    "description": "Avg. Pomodoro: "
+  },
+  "mon": {
+    "message": "Mon",
+    "description": "Monday"
+  },
+  "tue": {
+    "message": "Tue",
+    "description": "Tuesday"
+  },
+  "wed": {
+    "message": "Wed",
+    "description": "Wednesday"
+  },
+  "thu": {
+    "message": "Thu",
+    "description": "Thursday"
+  },
+  "fri": {
+    "message": "Fri",
+    "description": "Friday"
+  },
+  "sat": {
+    "message": "Sat",
+    "description": "Saturday"
+  },
+  "sun": {
+    "message": "Sun",
+    "description": "Sunday"
+  },
+  "lgn": {
+    "message": "Login",
+    "description": "Login"
+  },
+  "thrisuser": {
+    "message": "Email already registered.",
+    "description": "Email already registered."
+  },
+  "scssrgstr": {
+    "message": "Register is successful.",
+    "description": "Register is successful."
+  },
+  "ntfnduser": {
+    "message": "Email is not registered.",
+    "description": "Email is not registered."
+  },
+  "wrngpss": {
+    "message": "Wrong password.",
+    "description": "Wrong password."
+  },
+  "sccsslgn": {
+    "message": "Signed in.",
+    "description": "Signed in."
+  }
+}

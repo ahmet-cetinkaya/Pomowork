@@ -1,32 +1,27 @@
 {
-    "name": "Pomowork - Pomodoro® and Todo Assistant",
-    "version": "1.6",
-    "description": "Changes the home page to suit your work.",
-    "author": "Ahmet Çetinkaya <ahmetcetinkaya-@outlook.com>",
-    "homepage_url": "https://github.com/ahmet-cetinkaya/Pomowork",
-    "manifest_version": 2,
-    "icons": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
-    },
-    "permissions": [
-        "alarms",
-        "contextMenus",
-        "storage",
-        "notifications",
-        "tabs"
-    ],
-    "browser_action": {
-        "default_title": "Pomowork",
-        "default_icon": "images/icon16.png"
-    },
-    "chrome_url_overrides": {
-        "newtab": "index.html"
-    },
-    "background": {
-        "persistent": true,
-        "page": "index.html"
-    },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "version": "1.7.5",
+  "author": "Ahmet Çetinkaya <ahmetcetinkaya-@outlook.com>",
+  "homepage_url": "https://github.com/ahmet-cetinkaya/Pomowork",
+  "manifest_version": 2,
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": ["alarms", "contextMenus", "storage", "notifications", "tabs"],
+  "browser_action": {
+    "default_title": "Pomowork",
+    "default_icon": "images/icon16.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "background": {
+    "persistent": true,
+    "page": "index.html"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
