@@ -78,7 +78,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Ahmet ÇETİNKAYA - [@amt_txt](https://twitter.com/amt_txt) - [ahmetcetinkaya7@outlook.com](mailto:ahmetcetinkaya7@outlook.com)
+Ahmet Çetinkaya - [@ahmetctnky_txt](https://twitter.com/ahmetctnky_txt) - [ahmetcetinkaya7@outlook.com](mailto:ahmetcetinkaya7@outlook.com)
 
 [contributors-shield]: https://img.shields.io/github/contributors/ahmet-cetinkaya/Pomowork.svg?style=for-the-badge
 [contributors-url]: https://github.com/ahmet-cetinkaya/Pomowork/graphs/contributors
