@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "1.7.5",
+  "version": "1.7.8",
   "author": "Ahmet Çetinkaya <ahmetcetinkaya-@outlook.com>",
   "homepage_url": "https://github.com/ahmet-cetinkaya/Pomowork",
   "manifest_version": 2,

@@ -196,9 +196,6 @@ function eventListeners() {
     note.form.addEventListener("click", addNote)
     note.list.addEventListener("keyup", (e) => {
         addNoteToStorage(e);
-        if (e.key === "Delete" && e.target.value === "") {
-            deletenote(e);
-        }
     });
     setting.button.addEventListener("click", editSettings);
     setting.form.addEventListener("submit", saveSettings);
@@ -243,64 +240,64 @@ function eventListeners() {
     // })
 };
 
-function loginUser(e) {
-    e.preventDefault();
-    getFromStorage('users')
-        .then(async (users) => {
-            if (e.target.getAttribute('name') === 'login') {
-                if (users[login.mailInpt.value.trim()] !== undefined) {
-                    if (login.passInpt.value === users[login.mailInpt.value.trim()].pass) {
-                        $('#login-modal').modal('hide');
-                        const usersStorage = JSON.parse(users[login.mailInpt.value.trim()].storage);
-                        chrome.storage.local.set({
-                            "pomodoro": usersStorage.pomodoro
-                        });
-                        chrome.storage.local.set({
-                            "settings": usersStorage.settings
-                        });
-                        chrome.storage.local.set({
-                            "todos": usersStorage.todos
-                        });
-                        chrome.storage.local.set({
-                            "notes": usersStorage.notes
-                        });
-                        chrome.storage.local.set({
-                            "bookmarks": usersStorage.bookmarks
-                        });
-                        chrome.storage.local.set({
-                            "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
-                        });
-                        loadAllTodosToUI();
-                        loadAllBookmarksToUI();
-                        loadAllNotesToUI();
-                        showAlert("alertSettings", "success", "sccsslgn")
-                    } else showAlert("alertInLogin", "danger", "wrngpss")
-                } else showAlert("alertInLogin", "danger", "ntfnduser")
-            } else {
-                if (users[login.mailInpt.value.trim()] == undefined) {
-                    let storage = await getFromStorage('all')
-                    if (storage.todos === undefined) storage.todos = "[]"
-                    if (storage.bookmarks === undefined) storage.bookmarks = "[]"
-                    if (storage.notes === undefined) storage.notes = "[]"
-                    users[login.mailInpt.value.trim()] = {
-                        'pass': login.passInpt.value,
-                        'name': login.nameInpt.value,
-                        'storage': JSON.stringify(storage)
-                    }
-                    chrome.storage.local.set({
-                        "users": JSON.stringify(users)
-                    });
-                    chrome.storage.local.set({
-                        "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
-                    });
-                    showAlert("alertInLogin", "success", "scssrgstr")
-                    setTimeout(() => {
-                        $('#login-modal').modal('hide');
-                    }, 1000);
-                } else showAlert("alertInLogin", "danger", "thrisuser")
-            }
-        });
-}
+// function loginUser(e) {
+//     e.preventDefault();
+//     getFromStorage('users')
+//         .then(async (users) => {
+//             if (e.target.getAttribute('name') === 'login') {
+//                 if (users[login.mailInpt.value.trim()] !== undefined) {
+//                     if (login.passInpt.value === users[login.mailInpt.value.trim()].pass) {
+//                         $('#login-modal').modal('hide');
+//                         const usersStorage = JSON.parse(users[login.mailInpt.value.trim()].storage);
+//                         chrome.storage.local.set({
+//                             "pomodoro": usersStorage.pomodoro
+//                         });
+//                         chrome.storage.local.set({
+//                             "settings": usersStorage.settings
+//                         });
+//                         chrome.storage.local.set({
+//                             "todos": usersStorage.todos
+//                         });
+//                         chrome.storage.local.set({
+//                             "notes": usersStorage.notes
+//                         });
+//                         chrome.storage.local.set({
+//                             "bookmarks": usersStorage.bookmarks
+//                         });
+//                         chrome.storage.local.set({
+//                             "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
+//                         });
+//                         loadAllTodosToUI();
+//                         loadAllBookmarksToUI();
+//                         loadAllNotesToUI();
+//                         showAlert("alertSettings", "success", "sccsslgn")
+//                     } else showAlert("alertInLogin", "danger", "wrngpss")
+//                 } else showAlert("alertInLogin", "danger", "ntfnduser")
+//             } else {
+//                 if (users[login.mailInpt.value.trim()] == undefined) {
+//                     let storage = await getFromStorage('all')
+//                     if (storage.todos === undefined) storage.todos = "[]"
+//                     if (storage.bookmarks === undefined) storage.bookmarks = "[]"
+//                     if (storage.notes === undefined) storage.notes = "[]"
+//                     users[login.mailInpt.value.trim()] = {
+//                         'pass': login.passInpt.value,
+//                         'name': login.nameInpt.value,
+//                         'storage': JSON.stringify(storage)
+//                     }
+//                     chrome.storage.local.set({
+//                         "users": JSON.stringify(users)
+//                     });
+//                     chrome.storage.local.set({
+//                         "login": JSON.stringify(['true', users[login.mailInpt.value.trim()].name])
+//                     });
+//                     showAlert("alertInLogin", "success", "scssrgstr")
+//                     setTimeout(() => {
+//                         $('#login-modal').modal('hide');
+//                     }, 1000);
+//                 } else showAlert("alertInLogin", "danger", "thrisuser")
+//             }
+//         });
+// }
 /// Pomodoro
 
 
@@ -459,6 +456,7 @@ function pomodoroTime(process) {
         })
 }
 
+// Pomodoro
 chrome.alarms.onAlarm.addListener(() => {
     getFromStorage("pomodoro")
         .then(p => {
@@ -467,7 +465,7 @@ chrome.alarms.onAlarm.addListener(() => {
             pomodoro.emj.innerText = p.emj;
             setBadge(`${p.countdowntime}`)
             smoothWave(235 - (235 * (p.countdowntime / p.countdowntimepercent)))
-            if (!p.countdowntime) {
+            if (p.countdowntime === 0) {
                 sounds.pomodoro.play();
                 setTimeout(() =>smoothWave(-252), 1000);
                 if (p.timeprocess === "focus") {
@@ -476,7 +474,7 @@ chrome.alarms.onAlarm.addListener(() => {
                     pomodoro.allpomodoro.innerText = p.allpomodorotimes;
                     pomodoro.longbreak.innerText = p.pomodorotimes;
                     const pinnedTodo = document.querySelector("#todos > li:nth-child(1) > i.estimated-pomodoro.fas.fa-circle > span")
-                    if (Number(pinnedTodo.textContent) > 1) {
+                    if (pinnedTodo && +pinnedTodo.textContent > 1) {
                         pinnedTodo.textContent--
                         getFromStorage("todos").then(todo => {
                             todo[0].estimation--
@@ -914,11 +912,7 @@ function proposedTodo(pinned) {
             if (score > averange) todo.possibility += Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
             else todo.possibility -= Number(todo.todo.querySelector("i.estimated-pomodoro.fas.fa-circle > span").textContent)
         });
-        console.log(`!: score`, score)
-        console.log(`!: averange`, averange)
-        console.log(`!: sameTag`, sameTag)
         let highProbability = sameTag.find(o => o.possibility == Math.max.apply(Math, sameTag.map(t => t.possibility)))
-        console.log(`!: highProbability`, highProbability)
         if (sameTag.length > 0) pinTodo(highProbability.todo.querySelector("i.fas.fa-thumbtack"));
     })
 }
@@ -1079,22 +1073,35 @@ function addNote(e) {
 }
 
 function addNoteToUI(e) {
+    const newNoteDiv = document.createElement("div");
     const newnotearena = document.createElement("textarea");
     const notetwocol = document.createElement("div");
     const notetextarena = document.querySelectorAll(".alert.alert-warning.col");
+    const deleteButton = document.createElement("button");
+    const deleteButtonIcon = document.createElement("i");
+    deleteButtonIcon.className="fas fa-trash";
+    newNoteDiv.className="note m-1"
     newnotearena.id = notetextarena.length;
     newnotearena.className = "alert alert-warning col";
     newnotearena.setAttribute("spellcheck", "false");
             newnotearena.placeholder = chrome.i18n.getMessage('entrnt');
     notetwocol.className = "w-100";
+    deleteButton.className = "btn note-delete";
+    deleteButton.appendChild(deleteButtonIcon);
+    deleteButton.addEventListener("click", (e)=> {
+        e.preventDefault();
+        deletenote(e)
+    })
+    newNoteDiv.appendChild(newnotearena);
+    newNoteDiv.appendChild(deleteButton);
     if (e != undefined) {
         newnotearena.appendChild(document.createTextNode(e));
     }
     if (isEven(notetextarena.length) === true) {
         note.list.appendChild(notetwocol);
-        note.list.appendChild(newnotearena);
+        note.list.appendChild(newNoteDiv);
     } else {
-        note.list.appendChild(newnotearena);
+        note.list.appendChild(newNoteDiv);
     }
 }
 
@@ -1120,9 +1127,10 @@ function isEven(value) {
 }
 
 function deletenote(e) {
-    e.target.remove();
+    let element = e.target.parentElement.tagName !== "BUTTON" ?  e.target.parentElement : e.target.parentElement.parentElement;
+    element.remove();
     showAlert("alertInNotes", "danger", "dltdnt");
-    deleteNoteFromStorage(e.target.id)
+    deleteNoteFromStorage(element.children[0].id)
 }
 
 function deleteNoteFromStorage(index) {
