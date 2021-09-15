@@ -21,24 +21,7 @@
   </p>
 </p>
 
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-## About The Project
+## 💻 About The Project
 
 - A functional new tab for your work
 - Pomodoro countdown timer in new tab and toolbar
@@ -64,7 +47,7 @@
 </details>
 <br>
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Installation
 
@@ -72,13 +55,13 @@ You can download from [Chrome Web Store](https://chrome.google.com/webstore/deta
 
 You can install it manually by selecting the source folder you downloaded by opening developer mode at `chrome://extensions/`.
 
-## License
+## ⚖ License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## Contact
+## 📧 Contact
 
-Ahmet Çetinkaya - [@ahmetctnky_txt](https://twitter.com/ahmetctnky_txt) - [ahmetcetinkaya7@outlook.com](mailto:ahmetcetinkaya7@outlook.com)
+Ahmet Çetinkaya - [ahmetcetinkaya.info](https://ahmetcetinkaya.info)
 
 [contributors-shield]: https://img.shields.io/github/contributors/ahmet-cetinkaya/Pomowork.svg?style=for-the-badge
 [contributors-url]: https://github.com/ahmet-cetinkaya/Pomowork/graphs/contributors
